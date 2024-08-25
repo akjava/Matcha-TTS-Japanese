@@ -1,6 +1,8 @@
 <div align="center">
+
 # Matcha-TTS:Japanese
 ## Focusing Japanese language and ONNX Runtime Js/C# Inference
+特徴は、日本語/英語の変換と、ONNXでのブラウザーや Unity等での動作に集中します。
 
 ## Key Changed
 inferとtraining用に、basic_cleaners2　を追加しました。これは空白を取り除く以外なにもしません。(basic_cleanersは大文字を変換します)
