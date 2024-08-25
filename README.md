@@ -1,4 +1,23 @@
 <div align="center">
+# Matcha-TTS:Japanese
+## Focusing Japanese language and ONNX Runtime Js/C# Inference
+
+## Key Changed
+inferとtraining用に、basic_cleaners2　を追加しました。これは空白を取り除く以外なにもしません。(basic_cleanersは大文字を変換します)
+日本語は関係ありませんが、basic_cleaners2を使えば、自分で変換したIPAで英語をトレーニングも可能です。
+
+### Problems
+日本語に変換する、Phonemizerツールはありません。
+
+自分でcsvを変換してください。後日コードを出します。
+```
+phones = pyopenjtalk.g2p(texts[1], kana=False)
+```
+
+トレーニング時のyamlには以下のようにします。
+cleaners: [basic_cleaners2]
+
+## Thanks for Matcha-TTS Teams share such a great code with MIT
 
 # 🍵 Matcha-TTS: A fast TTS architecture with conditional flow matching
 
