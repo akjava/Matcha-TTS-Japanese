@@ -267,6 +267,20 @@ def cli():
         "--batch_size", type=int, default=32, help="Batch size only useful when --batched (default: 32)"
     )
 
+    parser.add_argument(
+        "--mel_mean",
+        type=float,
+        default=None,
+        help="specific mel mean",
+    )
+
+    parser.add_argument(
+        "--mel_std",
+        type=float,
+        default=None,
+        help="specific mel std",
+    )
+
     args = parser.parse_args()
 
     args = validate_args(args)
@@ -280,6 +294,17 @@ def cli():
         args.model = "custom_model"
 
     model = load_matcha(args.model, paths["matcha"], device)
+    #
+    model_mel_mean=model.mel_mean
+    model_mel_std=model.mel_std
+    if args.mel_mean!=None:
+        model.mel_mean = torch.tensor(args.mel_mean)  # Use torch.tensor(0.0) instead of 0
+        print(f"from mel_mean = {model_mel_mean},to {model.mel_mean}")
+    if args.mel_std!=None:
+        model.mel_std = torch.tensor(args.mel_std)   # Use torch.tensor(0.0) instead of 0
+        print(f"from mel_std = {model_mel_std},to {model.mel_std}")
+    
+    print(f"mel_mean = {model.mel_mean},mel_std ={model.mel_std}")
     vocoder, denoiser = load_vocoder(args.vocoder, paths["vocoder"], device)
 
     texts = get_texts(args)
@@ -346,7 +371,7 @@ def batched_synthesis(args, device, model, vocoder, denoiser, texts, spk):
         total_rtf.append(output["rtf"])
         total_rtf_w.append(rtf_w)
         for j in range(output["mel"].shape[0]):
-            base_name = f"utterance_{j:04d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{j:04d}"
+            base_name = f"utterance_{j:04d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{j:0d}"
             length = output["mel_lengths"][j]
             new_dict = {"mel": output["mel"][j][:, :length], "waveform": output["waveform"][j][: length * 256]}
             location = save_to_folder(base_name, new_dict, args.output_folder)
