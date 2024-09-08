@@ -49,6 +49,7 @@ def process_text(i: int, text: str, device: torch.device):
     print(f"[{i}] - Input text: {text}")
     x = torch.tensor(
         #intersperse(text_to_sequence(text, ["english_cleaners2"])[0], 0),  # if somehow want use english(most of case you should use original matcha-tts) comment out this.but no support
+        # your ljspeech output is strage,it's ok this cleaner almost do nothing.
         intersperse(text_to_sequence(text, ["basic_cleaners2"])[0], 0), # do almost nothing. to infer you have to phonemize text by yourself 
         dtype=torch.long,
         device=device,
@@ -345,7 +346,7 @@ def batched_synthesis(args, device, model, vocoder, denoiser, texts, spk):
         total_rtf.append(output["rtf"])
         total_rtf_w.append(rtf_w)
         for j in range(output["mel"].shape[0]):
-            base_name = f"utterance_{j:03d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{j:03d}"
+            base_name = f"utterance_{j:04d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{j:04d}"
             length = output["mel_lengths"][j]
             new_dict = {"mel": output["mel"][j][:, :length], "waveform": output["waveform"][j][: length * 256]}
             location = save_to_folder(base_name, new_dict, args.output_folder)
