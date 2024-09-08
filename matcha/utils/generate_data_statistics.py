@@ -32,7 +32,6 @@ def compute_data_statistics(data_loader: torch.utils.data.DataLoader, out_channe
     total_mel_sum = 0
     total_mel_sq_sum = 0
     total_mel_len = 0
-
     for batch in tqdm(data_loader, leave=False):
         mels = batch["y"]
         mel_lengths = batch["y_lengths"]
@@ -46,7 +45,25 @@ def compute_data_statistics(data_loader: torch.utils.data.DataLoader, out_channe
 
     return {"mel_mean": data_mean.item(), "mel_std": data_std.item()}
 
-
+def validate_file(path):
+    print(f"file check {path}")
+    base_dir = os.getcwd()
+    with open(path,"r") as f:
+        index = 1
+        for line in f:
+            if line.strip() == "":
+                print("###")
+                print(f"#### empty line exist {index} ####")
+                print("###")
+            datas = line.split("|")
+            if not os.path.exists(os.path.join(base_dir,datas[0])):
+                print("###")
+                print(f"### file not found {datas[0]} index = {index}")
+                print("###")
+            else:
+                pass
+                #print(f"pass {datas[0]}")
+            index += 1
 def main():
     parser = argparse.ArgumentParser()
 
@@ -94,14 +111,24 @@ def main():
         cfg["batch_size"] = args.batch_size
         cfg["train_filelist_path"] = str(os.path.join(root_path, cfg["train_filelist_path"]))
         cfg["valid_filelist_path"] = str(os.path.join(root_path, cfg["valid_filelist_path"]))
-        cfg["load_durations"] = False
 
     text_mel_datamodule = TextMelDataModule(**cfg)
+    
+    if not os.path.exists(cfg["train_filelist_path"]):
+        print(f"#### ERROR NOT IN train_filelist_path file = {cfg['train_filelist_path']}####")
+    if not os.path.exists(cfg["valid_filelist_path"]):
+        print(f"#### ERROR NOT IN validate_filelist_path file = {cfg['valid_filelist_path']}####")
+    validate_file(cfg["train_filelist_path"])
+    validate_file(cfg["valid_filelist_path"])
     text_mel_datamodule.setup()
     data_loader = text_mel_datamodule.train_dataloader()
     log.info("Dataloader loaded! Now computing stats...")
+    
+    if not os.getcwd().endswith("Matcha-TTS"):
+        print(f"#### WARNING NOT IN MATCHA current workind dir = {os.getcwd()}####")
+    
     params = compute_data_statistics(data_loader, cfg["n_feats"])
-    print(params)
+    
     json.dump(
         params,
         open(output_file, "w"),
