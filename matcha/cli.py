@@ -124,11 +124,12 @@ def to_waveform(mel, vocoder, denoiser=None):
     return audio.cpu().squeeze()
 
 
-def save_to_folder(filename: str, output: dict, folder: str):
+def save_to_folder(filename: str, output: dict, folder: str,save_extra = False):
     folder = Path(folder)
     folder.mkdir(exist_ok=True, parents=True)
-    plot_spectrogram_to_numpy(np.array(output["mel"].squeeze().float().cpu()), f"{filename}.png")
-    np.save(folder / f"{filename}", output["mel"].cpu().numpy())
+    if save_extra:
+        plot_spectrogram_to_numpy(np.array(output["mel"].squeeze().float().cpu()), f"{filename}.png")
+        np.save(folder / f"{filename}", output["mel"].cpu().numpy())
     sf.write(folder / f"{filename}.wav", output["waveform"], 22050, "PCM_24")
     return folder.resolve() / f"{filename}.wav"
 
@@ -281,12 +282,19 @@ def cli():
         help="specific mel std",
     )
 
+    parser.add_argument(
+        "--save_extra",
+        action="store_true",
+        help="save image and numpy",
+    )
+
     args = parser.parse_args()
 
     args = validate_args(args)
     device = get_device(args)
     print_config(args)
     paths = assert_required_models_available(args)
+    save_extra = args.save_extra
 
     if args.checkpoint_path is not None:
         print(f"[🍵] Loading custom model from {args.checkpoint_path}")
@@ -311,9 +319,9 @@ def cli():
 
     spk = torch.tensor([args.spk], device=device, dtype=torch.long) if args.spk is not None else None
     if len(texts) == 1 or not args.batched:
-        unbatched_synthesis(args, device, model, vocoder, denoiser, texts, spk)
+        unbatched_synthesis(args, device, model, vocoder, denoiser, texts, spk,save_extra)
     else:
-        batched_synthesis(args, device, model, vocoder, denoiser, texts, spk)
+        batched_synthesis(args, device, model, vocoder, denoiser, texts, spk,save_extra)
 
 
 class BatchedSynthesisDataset(torch.utils.data.Dataset):
@@ -340,7 +348,7 @@ def batched_collate_fn(batch):
     return {"x": x, "x_lengths": x_lengths}
 
 
-def batched_synthesis(args, device, model, vocoder, denoiser, texts, spk):
+def batched_synthesis(args, device, model, vocoder, denoiser, texts, spk,save_extra = False):
     total_rtf = []
     total_rtf_w = []
     processed_text = [process_text(i, text, "cpu") for i, text in enumerate(texts)]
@@ -374,7 +382,7 @@ def batched_synthesis(args, device, model, vocoder, denoiser, texts, spk):
             base_name = f"utterance_{j:04d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{j:0d}"
             length = output["mel_lengths"][j]
             new_dict = {"mel": output["mel"][j][:, :length], "waveform": output["waveform"][j][: length * 256]}
-            location = save_to_folder(base_name, new_dict, args.output_folder)
+            location = save_to_folder(base_name, new_dict, args.output_folder,save_extra)
             print(f"[🍵-{j}] Waveform saved: {location}")
 
     print("".join(["="] * 100))
@@ -383,7 +391,7 @@ def batched_synthesis(args, device, model, vocoder, denoiser, texts, spk):
     print("[🍵] Enjoy the freshly whisked 🍵 Matcha-TTS!")
 
 
-def unbatched_synthesis(args, device, model, vocoder, denoiser, texts, spk):
+def unbatched_synthesis(args, device, model, vocoder, denoiser, texts, spk,save_extra = False):
     total_rtf = []
     total_rtf_w = []
     for i, text in enumerate(texts):
@@ -413,7 +421,7 @@ def unbatched_synthesis(args, device, model, vocoder, denoiser, texts, spk):
         total_rtf.append(output["rtf"])
         total_rtf_w.append(rtf_w)
 
-        location = save_to_folder(base_name, output, args.output_folder)
+        location = save_to_folder(base_name, output, args.output_folder,save_extra)
         print(f"[+] Waveform saved: {location}")
 
     print("".join(["="] * 100))
