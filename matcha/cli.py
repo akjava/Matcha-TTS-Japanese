@@ -48,8 +48,8 @@ def plot_spectrogram_to_numpy(spectrogram, filename):
 def process_text(i: int, text: str, device: torch.device):
     print(f"[{i}] - Input text: {text}")
     x = torch.tensor(
-        #intersperse(text_to_sequence(text, ["english_cleaners2"])[0], 0),
-        intersperse(text_to_sequence(text, ["basic_cleaners2"]), 0), # do almost nothing. to infer you have to phonemize text by yourself 
+        intersperse(text_to_sequence(text, ["english_cleaners2"])[0], 0),
+        #intersperse(text_to_sequence(text, ["basic_cleaners2"]), 0), # do almost nothing. to infer you have to phonemize text by yourself 
         dtype=torch.long,
         device=device,
     )[None]

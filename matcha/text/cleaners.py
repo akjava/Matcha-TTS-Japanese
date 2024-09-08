@@ -24,13 +24,14 @@ critical_logger.setLevel(logging.CRITICAL)
 # Intializing the phonemizer globally significantly reduces the speed
 # now the phonemizer is not initialising at every call
 # Might be less flexible, but it is much-much faster
-global_phonemizer = phonemizer.backend.EspeakBackend(
-    language="en-us",
-    preserve_punctuation=True,
-    with_stress=True,
-    language_switch="remove-flags",
-    logger=critical_logger,
-)
+global_phonemizer = None
+# global_phonemizer = phonemizer.backend.EspeakBackend(
+#     language="en-us",
+#     preserve_punctuation=True,
+#     with_stress=True,
+#     language_switch="remove-flags",
+#     logger=critical_logger,
+# )
 
 
 # Regular expression matching whitespace:
@@ -106,6 +107,18 @@ def english_cleaners2(text):
     text = convert_to_ascii(text)
     text = lowercase(text)
     text = expand_abbreviations(text)
+    global global_phonemizer
+    from phonemizer.backend.espeak.wrapper import EspeakWrapper
+    EspeakWrapper.set_library('C:\Program Files\eSpeak NG\libespeak-ng.dll')
+    if global_phonemizer == None:
+        global_phonemizer = phonemizer.backend.EspeakBackend(
+        language="en-us",
+        preserve_punctuation=True,
+        with_stress=True,
+        language_switch="remove-flags",
+        logger=critical_logger,
+        )
+
     phonemes = global_phonemizer.phonemize([text], strip=True, njobs=1)[0]
     phonemes = collapse_whitespace(phonemes)
     return phonemes
