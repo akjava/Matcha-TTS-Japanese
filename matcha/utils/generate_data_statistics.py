@@ -133,6 +133,8 @@ def main():
         params,
         open(output_file, "w"),
     )
+     # this is not debug ,important output
+    print(params)
 
 
 if __name__ == "__main__":
