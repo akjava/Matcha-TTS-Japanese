@@ -5,7 +5,7 @@
     <title>Match-TTS Onnx with ipa converter</title>
 </head>
 <body>
-    <h1>Match-TTS Onnx with ipa converter(Faster GPU Version)</h1>
+    <h1>Match-TTS Onnx VCTK-English(Faster GPU Version)</h1>
     <div>this example using Quantized version(lowquality and slow) because of Github Page 100MB limitation</div>
     <br>
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.webgpu.min.js" ></script>
@@ -89,7 +89,7 @@
         
     
     </script>
-    <br>
+    
     <input type="text" id="textInput"  value ="Hello." placeholder="Enter some text here...">
     
     <button id="myButton">Text To Speak</button><br>
@@ -105,8 +105,9 @@
     <input type="range" id="speed"  min="0.1" max="2.0" value="1.0" step="0.1"/>
     <label for ="speed" id="speed_label">1.0</label>
     <br>
-
+    <br>
     <div id="footer">
+    <b>Credits</b><br>
     <a href="https://github.com/akjava/Matcha-TTS-Japanese" style="font-size: 9px" target="link">Matcha-TTS-Japanese</a> | 
     <a href = "http://www.udialogue.org/download/cstr-vctk-corpus.html" style="font-size: 9px"  target="link">CSTR VCTK Corpus</a> |
     <a href = "https://github.com/cmusphinx/cmudict" style="font-size: 9px"  target="link">CMUDict</a> |
@@ -114,7 +115,7 @@
     <a href = "https://huggingface.co/cisco-ai/mini-bart-g2p" style="font-size: 9px"  target="link">mini-bart-g2p</a> |
     <a href = "https://onnxruntime.ai/docs/get-started/with-javascript/web.html" style="font-size: 9px"  target="link">ONNXRuntime-Web</a> |
     <a href = "https://github.com/akjava/English-To-IPA-Collections" style="font-size: 9px"  target="link">English-To-IPA-Collections</a> |
-    <a href ="https://huggingface.co/papers/2309.03199">Matcha-TTS Paper</a>
+    <a href ="https://huggingface.co/papers/2309.03199" style="font-size: 9px"  target="link">Matcha-TTS Paper</a>
     </div>
     
     
