@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Generation Example</title>
+    
+</head>
+<body>
+
+<h1>G2P Example</h1>
+<div>
+    <input type="text" id="textInput"  value ="hello huggingface" placeholder="Enter some text here,not long">
+    <button id="myButton">G2P</button>
+</div>
+<div id="output"></div>
+<div id="ipa"></div>
+<script src = "./arpa_to_ipa.js"></script>
+<script src = "./cmudict_convert.js"></script>
+
+<script type="module">
+  
+//generateText().catch(console.error);
+
+function generate(){
+  const inputText = document.getElementById('textInput').value;
+  const dict = text2arpa(inputText)
+  const result = dict["result"]
+  const non_converted = dict["non_converted"]
+
+  const arpa = result.join(" ");
+  console.log(non_converted)
+
+  document.getElementById('output').innerText = arpa
+  document.getElementById('ipa').innerText = arpa_to_ipa(arpa).replace(/\s/g, "");
+}
+
+document.getElementById('myButton').onclick = generate
+
+</script>
+
+</body>
+</html>

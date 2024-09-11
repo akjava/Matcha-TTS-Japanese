@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G2P Unknown word with mini-bart-g2p</title>
+    
+</head>
+<body>
+
+<h1>G2P Unknown word Example with mini-bart-g2p</h1>
+<div>
+    <input type="text" id="textInput"  value ="hello huggingface" placeholder="Enter some text here,not long">
+    <button id="myButton">G2P</button>
+</div>
+<div id="output"></div>
+<script type="module">
+   import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+   env.allowLocalModels = true;
+    env.localModelPath = "../models";
+
+async function generateText() {
+    const generator = await pipeline('text2text-generation', 'mini-bart-g2p',{quantized: false});
+
+    const inputText = document.getElementById('textInput').value;
+    const options = { max_new_tokens: 100 };
+
+    const output = await generator(inputText, options);
+
+    const arpa = output[0].generated_text
+    
+    document.getElementById('output').innerText = arpa;
+}
+
+document.getElementById('myButton').onclick = generateText
+
+</script>
+
+</body>
+</html>

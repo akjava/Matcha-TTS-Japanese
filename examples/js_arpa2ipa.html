@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARPA to IPA Test</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="textInput"  value ="HH EH L OW1" placeholder="Enter valid arpa here">
+        <button id="myButton">Convert to IPA</button>
+    </div>
+    <div id="output"></div>
+    
+
+
+
+    <script type="module">
+    import { arpa_to_ipa } from "../js-esm/arpa_to_ipa.js";
+
+    function convert_to_ipa(){
+        try{
+            let input =  document.getElementById('textInput').value.toUpperCase();
+        let output = arpa_to_ipa(input); 
+        document.getElementById('output').innerText = output
+        }catch(e){
+            console.log(e)
+            document.getElementById('output').innerText = e
+        }
+       
+    }
+
+    document.getElementById('myButton').onclick = convert_to_ipa
+    
+    </script>
+</body>
+</html>

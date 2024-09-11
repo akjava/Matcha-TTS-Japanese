@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert Cmudict to ipa</title>
+    <style>
+        .text-container {
+            font-size: 12px; 
+            line-height: 1.6; 
+            letter-spacing: 1px; 
+            color: #333; 
+            padding: 20px; 
+            background-color: #f9f9f9; 
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="message">Click Button to start convert:</label><br>
+        <textarea id="output_textarea" name="message" rows="20" cols="120"></textarea><br>
+        <input type="button" id="convert_button" value="convert cmudict to ipa">
+    </div>
+    <div id="license" class="text-container">
+        <br> # CMUdict  --  Major Version: 0.07
+        <br> 
+        <br> # $HeadURL: https://svn.code.sf.net/p/cmusphinx/code/branches/cmudict/cmudict-0.7b $
+        <br> # $Date:: 2015-07-15 12:34:30 -0400 (Wed, 15 Jul 2015)      $:
+        <br> # $Id:: cmudict-0.7b 13083 2015-07-15 16:34:30Z air         $:
+        <br> # $Rev:: 13083                                              $: 
+        <br> # $Author:: air                                             $:
+        <br>
+        <br> #
+        <br> # ========================================================================
+        <br> # Copyright (C) 1993-2015 Carnegie Mellon University. All rights reserved.
+        <br> #
+        <br> # Redistribution and use in source and binary forms, with or without
+        <br> # modification, are permitted provided that the following conditions
+        <br> # are met:
+        <br> #
+        <br> # 1. Redistributions of source code must retain the above copyright
+        <br> #    notice, this list of conditions and the following disclaimer.
+        <br> #    The contents of this file are deemed to be source code.
+        <br> #
+        <br> # 2. Redistributions in binary form must reproduce the above copyright
+        <br> #    notice, this list of conditions and the following disclaimer in
+        <br> #    the documentation and/or other materials provided with the
+        <br> #    distribution.
+        <br> #
+        <br> # This work was supported in part by funding from the Defense Advanced
+        <br> # Research Projects Agency, the Office of Naval Research and the National
+        <br> # Science Foundation of the United States of America, and by member
+        <br> # companies of the Carnegie Mellon Sphinx Speech Consortium. We acknowledge
+        <br> # the contributions of many volunteers to the expansion and improvement of
+        <br> # this dictionary.
+        <br> #
+        <br> # THIS SOFTWARE IS PROVIDED BY CARNEGIE MELLON UNIVERSITY ``AS IS'' AND
+        <br> # ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+        <br> # THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        <br> # PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL CARNEGIE MELLON UNIVERSITY
+        <br> # NOR ITS EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+        <br> # SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+        <br> # LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+        <br> # DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+        <br> # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+        <br> # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        <br> # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        <br> #
+        <br> # ========================================================================
+        <br> #
+        <br>
+        <br>  NOTES  ;
+        <br> 
+        <br>  [20080401] (air)  New dict file format introduced 
+        <br>   - comments (like this section) are allowed
+        <br>   - file name is major version; vers/rev information is now in the header
+        <br>
+        <br> 
+        <br>
+        <br> 
+    </div>
+
+    <script type="module">
+    import { arpa_to_ipa } from "./js-esm/arpa_to_ipa.js";
+    import { loadCmudict } from "./js-esm/cmudict_loader.js";
+
+    let converted_text = ""
+    let license_text=""
+    function startsWithNonAlphabet(str) {
+        return /^[^a-zA-Z]/.test(str);
+    }
+
+    function get_arpa(word){
+        return cmudict[word.toUpperCase()]
+    }
+
+     async function loadDataAndProcess() {
+        console.log("call loadDataAndProcess")
+    try {
+    await cmudictReady
+    //console.log(cmudict)
+    for (const key of Object.keys(cmudict)) {
+        if (key.startsWith(";;;")){
+            //console.log(key)
+            continue
+        }
+        if (startsWithNonAlphabet(key)){
+            //pass
+            //continue
+        }
+        const arpa = get_arpa(key)
+        if (typeof arpa == "undefined"){
+            console.log("not found "+key)
+            continue
+        }
+    const convert_ipa = arpa_to_ipa(arpa).trim()
+    const text = `${key}\t${convert_ipa}\n`
+    //console.log(text)
+    converted_text+=text
+    }
+
+    document.getElementById('output_textarea').value = converted_text
+
+   
+        }catch (error) {
+            console.error('Error:', error);
+        }
+
+    
+    }
+
+
+    let cmudict ={}
+    let cmudictReady = loadCmudict(cmudict,'./dictionaries/cmudict-0.7b')
+
+
+    document.getElementById('convert_button').onclick = loadDataAndProcess;
+
+    
+    
+    </script>
+</body>
+</html>

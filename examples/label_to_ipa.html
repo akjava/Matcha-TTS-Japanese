@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert Label text to IPA for Matcha-TTS-Japanese Training</title>
+</head>
+<body>
+    <div id="result"></div>
+    <h1>Convert Label text to IPA</h1>
+    <div>create Matcha-TTS-Japanese training code</div>
+    <div>
+        
+        <label style="width: 110px;display: inline-block;">audio dir</label><input type="text" id="input_audio_dir"  value ="datas/en001/wav/"><br>
+        <label style="width: 110px;display: inline-block;">csv separator</label><input type="text" id="input_separator"  value ="|"><br>
+        <textarea id="input_textarea" rows="20" cols="120">01ea118969090b654fbca58ce7fe9c611ac7573502f6f1561f43f2fc915a4d95a3e9e69ec6099571924bfc3296a7658736b0b5d8440732877c7042aefd718feb.mp3|Classification is, among other things, a discipline of machine learning.
+            0241e4c8c6aab90ddf34935824033db67eadca81906a17c43329e7c0fefceb1a9655a6bf0f5774aff25227efe6ec046df07ac3ef3560283252b0b5a3ee8b3581.mp3|They all met during office hours.
+            02fdc5b57ec425a6dad38a8fe95dc83cde2805df21ddf7eb192151b7a8dfaedb6e3ebdb46cdbcc806cbafa19f1328ba28d57ca6f5ae4c51df164f180e0e453e5.mp3|He decanted the wine and began to recount the disturbing story he had been told.
+            0302e01c2fad918fd6f94bcae19114f436e89c2585e8fd98be2458d33c5c6b35c0d7fbe71e3b57ba06d05a09d0485993080a35f851494f41347b8a6e1bf1f7d6.mp3|Without questioning he said what the screen of his computer dictated to him.
+            033b3ef460e9eb9d47bedf5631c1088f2ca30148a89b8eb1ffc15d9033e799ade798337d1d125d67f0205ec49e6122822b48dc7508b7eb0843d79e275de2d8ff.mp3|Not everything that is faced can be changed; but nothing can be changed until it is faced.
+            055d13c7dbb0b7ea18d9279c18dfe59ebadc5d0d6d049b75ec962707676ce0532dbc844a9f28576d01b815ba63326a34a351679b26a8b38fe939d22d0ccfcdf7.mp3|I hate sneakers but I am liking these shoes.
+            062cb8aec6de374c0ff2f01cefda68b5c3f2292d1d304dfbe31935547a6ac3f1cb07cc57aec3df040cb883e60ac1f8af34baadd3b88a4e7e691c12db0d886e46.mp3|Grime, rust and residual particles polluted the air.
+            0706213fa92c157d6be99e8575c1b653603eb6ca6ae82b6002e4a54cef0eb24b08c2555be5a5ab6aa84e9dca8c7cc818c0921380122ff85ec3f4a44528224673.mp3|Pizza is an italian classic.
+            07c046f2b8bb84a952f280beb50134d993c5bf91d80c2ef6e39fd496b2314b463f6d7e28818322f13a95acd6f77b21fde0f9b4c7c9863ecc6b0bf929f4a94a7f.mp3|"Don't let her shoot."
+            07e7568830d7a5b2d1cae647d66a65e95c9834003b3cbd442d899b10ddd190b6a90942df30de5492ce0b84e68bf1bef4327966632a0d3cce2c7a22fe35d05b74.mp3|He mashed in the controller buttons, hoping for some extra speed.
+            08ee401ace6d221d1b1c045ef0b33762ce2bc42465830bfc6437800d3d0fbda2689b0673fe6812744b9637f5a75b3c0ea03e80610ee39a617423aa902be80f54.mp3|Artisanal gin bar, seriously?!
+            0936c83bbd49f9277424c9c23569649eea0dcc5f89d2d7557faad67949fdb1c405718e876e339f58806cf6598d36fe45faf2a9d2f484a6735c10e1cd524e5d10.mp3|Just one more try.
+            0a228c6ba4f9f154cd809927331acb6301eaa4cf1b9bb1c97e1f2ddae7725623f8b653d9afd78e4de71f54d0aae5384c015ef2717b7fe6a5e328db3671429e2b.mp3|The text is often unnecessarily obscure.
+            0a7c18bd306106a5841d0822a2c9996d878d452d4d01897d53881d7aeb1a8bed768b77801fe6777c0ab84eeb30d91b35b8dcf63ece94084fbce321d07b5c192b.mp3|Thanks to our augmented reality glasses, we gain insight to the details.
+            0b626a1d10e587d612db02bfa556985d96685ad33e82782e08a16b1e216bf8399270381902feb66af766df8b736f74f4a272b55baecc0d462ef6ff568ef804c2.mp3|This recording is corrupted.
+            0d384b8ad2580246bb91aa2c62e2ec885ac974e16d9ca4dd50ccf1025a711d9bf7121ffb66f246c62e07240625170e385385ae06e41e52f6bd282c44a079f97d.mp3|Luckily there was a zebra crossing.
+            0e190dad569468cf3ae7ff1537ca23209a28418db6843d5b1f0f60391b1fb416eb693bcb9a9702c888c8d171cb011a512ffca09738bae459fa904d6a96fff924.mp3|We must stay hidden.
+            0ec241406821e5fca8dad96f14c5e42d81de8ddf856f0c82587fe0964aed19c4198a76cd948b3ce826f5fd88b7b8d6ca7ce1125591841a23ee31915e44e57ff0.mp3|I get more of a kick out of it that way.
+            0f68a3691c6b5e15ad303006a6f2c856115de07ccc8011ea08b94ffa2a62c59da6eb720b0e28d5ee6f6e630303f614ef6dae9646d568acc2b42755f414f6918f.mp3|"What's the matter with him."
+            0f98eff9c129207aa029bc366152854194d32f10243e027b6d85cf8a9f0fc2021a943e713f5e56c211ab99b8f4c58467872ad64cb71a9449e3cd9bf55601769a.mp3|The USA and many other countries of the world have their independence day in July.
+            0fcc8fdf4d9743214c44147cc636818a5cf19ceda8ab05cf7ca9cad32899e2e582f523f28f729e79c4007f60277124eb32f16a90f5d84e859ffd9a1a7d18f401.mp3|Light up with the street with Johnson!
+            10356a633a07e340493d16cfefb395682948cfad0127c77c1ed1f9bac1649cd51ac4e09593200e803d6ef41586f90b533fdf567fe5651526b0868e41c4dea544.mp3|I often use a voice command to move the mouse based on my gaze point, then use my foot to click.
+            10708d11f28669fbb251a41992c8f1201e6c9af8b82df2ecc5e693fe48ce186b585e51799403e461de6eda4e6ba7ea2fa36dc63305a7ab5bf2fd54aac91f3594.mp3|Its too early to tell whether the strategy will pay off.
+            12374c6d4711dfe2c1672dfc064245091a1c6bc3cd3f010108af8748eac9f1fb00e5ceba6a668c8ca697fa8a1aabd511e7d0ca4b9d3f6733c26ca91d82e716a5.mp3|Coach has heard all about you.
+            153b29035a6c9ec9ff1661b314cd98fb3517ccbef49df5308ca3f84eb44d27e0c719c97dcaa750d420c541bea7425618cac12c40f9a249ef44dccb5ae110aa6b.mp3|"This technique doesn't work perfectly when multiple windows are open, but it works most of the time."
+            16c7154f6b05a5ce6d96d699a666e477417d218d64909d22c369b5e4cfc090f386fd9cacf2429c0b00f64c2e3617e9cad21ffd1c2db864a4555acba6dc4817e0.mp3|Her eye twitched uncontrollably.
+            18086029f3ff7f0bdbaad45b634f2c7009b88aad8b8ec4b4358a59bcc29b76cdeb1fa0068a6ace4d7821564314246fdacb52a2ef9bed063ce22072b118de6d23.mp3|"She doesn't look happy."
+            184b36382a878b9a51a4c40dffb134327106fc0739f9a7a8b285a2c165cca52c9206dd485e520e0a2f9b504b3bf8d809b8d078f34cbf8100c274dd7561a391b0.mp3|January was hot on the heels of december.
+            18a85af88ff417ab4fb3183fd97c86bb6b79b12c49b96c2d132c9c9696b2004a3040423a90397ef9a33bd057e623f2a9883c340368877912645bf2eb16887b99.mp3|I want my garden to be filled with roses, petunias and passion flowers.
+            194185ac0190828054106837f44aacece1ee8b0ef219d772c12798270dd2cc5bc625a5592dcf76eaa02a859df05743c1c4eef15a19c37f56c1bd002f1aa32d34.mp3|Your favorite band has a female singer.
+            1b8b876c57846979ac39434482e90ff2de4a27a69ed5d07d194222a0280f2e363997ba90e20bc00272de2342ef605a7fd81ed4aba1de2a1d56d4fa6f4d108244.mp3|Too much food is being wasted.
+            1baef1b352105d6b84ef7fe34768ecf13c2effb42e9528a8328194abd4a43261265e1459d457136063495e50ab457a48cee2a9071bda2f517a0038b80caa8668.mp3|The poor boy stood in the rain.
+            1bf8d2405dfff4e738ea42b2f2d891c060e06f4da231bd2fa19d6c6c4301d874818cef05004d020c349d9b601181b4046a99b88396008edd587512b2dfafb5ab.mp3|What do you think, do they prefer it cold or hot?
+            1cf7755183c5a48f25a75f78e30f4b0ddc7686dfbeb09b99ea18f492df23228a7fa5432505cefc4b8b05148d448d4ed35b002d6177a741b0418e3edea5e3eaf9.mp3|All beverages in this shop are free of alcohol.
+            1d76f61cd79d2e1a016bcebdc90e62d47d8d599b4bf1b0b38d84fbffcbf18ea78d3ac0b71109232fe15950cc10d596914aaae4a4c675aaa8dda28e00f0615015.mp3|Tel Aviv is a very gay friendly city.
+            1f97b4fa2230c5dd1c866c5927cd4186395a3f3103746cb8787d53bff4ed69fc3c0bd307c8153d0288be4b963f0a73d96c350c63caec3021c5845b469de2ab78.mp3|"She didn't have one."
+            21e5d82fe2d6ee9ad8fb9ea72ba510119e165b7d4f9d9cb6971d0416994043a1fad32d775323e2e380293c8182fb34e53a885e001291bae651da3f95bb439290.mp3|The first baseman dropped the ball.
+            22120e43a7cd49287ce95cd2e9447300b365f27e7300bf9d3024d03c0e456fbcd8fe6fc07e1e92eefd99f414f6ee84075f93dba843689cbc6ad0461d0acefb5b.mp3|"I'm afraid you're blocking my view."
+            227957b2b26f936a6442bca0f70ef9c475e5aa45bad9a123cdbfb3192787bded4ce4370490d89c69c026fc07a49c483603b1455de8a4f542ea7d9ba2a89d452b.mp3|The usage of high information content is meaningless.
+            229289ba548f0eeb0c68ab5ca98b959f434b46d226c12305233562b0a1687ad7ce681965cdad91024a474b1d68c6ba2401dcfae29650540e519a097960bb4e3a.mp3|"He'll be ready on time."
+            23ae5259d86fddfb3c0de170d075290c44b7e4f59c4474ba0b6aee5f63a17e9413e0ea5e142ca2b195272b4a7f6cbbb185c1c0f4e25bbd40860d74a6c92b35ac.mp3|Turn off the tv immediately!
+            25603557eb34f05e68cf7501574b0aaa1c079500fd829460adbd04c7e911d9706e0abab8d4bd761f0e1d599e5eb47c195a780b9d676c2a727aed950e6cddb8fb.mp3|Many of our soldiers teamed up.
+            2607357769b5211ba7776a2b4e56de7c37b79c5cd20c781d5d98eac4d290f4f279b32e2e6bc33a86e5ca0ecb923c160c9a4930f8d9e752a297b3ae192f5df9b6.mp3|Communism is the opposite of capitalism.
+            2767f02012354777eab033067674e8f442871f73416dbccbee268a69244f92c53b01e201c53638431d494f6a3f381d932415f3827d8b3bc0f608df6e3700a962.mp3|"I won't leave you."
+            298228e00e4c518768eb9b7c49e39f0c5a2cfb971ca4ed26dd207f6a432e3f1ec5811b7f2a65ffdb82ffdf8ca49fd52bb50843ff72b6b70eae9e795d77c03b6d.mp3|The experience in the coffin was literally immersive.
+            2a34dc6e97d17d33a92ccb6e04205353c253b3f82186d39d2d08531197ff4af7630b6cffdd58cc66449b7244f1f25f16c5235d93e1193f273506b4fc014135a4.mp3|"They're forming Clubs."
+            2a548be712f40a04b424b8da734d65f1dad91ea593e5606631c6262e54a28891364c50f6d5452f1fb2f939c7c0c08858823eaaa079e6bd6382a43f4f0db3443b.mp3|"I can't let you have my plane."
+            2b1c7b5ca2df5196a40fe9289a6baa97dab4641166c67b949812f8b85dcf5c12be72c9d6da2851684d37cefa9f335fdb9e75805c558121a4faf0bf9743fffff1.mp3|Somebody should eat the mango, I guess it is me.
+            2bfb95213ff6de24934099d16598488c31d737a5158937995a9c14b31fa76518a7d85eee28f1d6eb2e31cc5da6b85ea606ee134723bb97701fafccbeeed663b3.mp3|The car engine has seized.
+            2d79c60595056096af96a3eaa37aa6904e7d0ce58776ad725bd5dee4500a585730ffecae8c812afa66e6dffae0026a96a641e40cd2492c127edacba55810b2ac.mp3|"I wouldn't take that too seriously."
+            30960ffd126c11a79946929cdd6733ef372184fdeddd569d6ea1a00a9a1ba2008dda617cf161a6c3b69e1db095d9f85a989ca67c877221870c597d993c097337.mp3|"Theresa couldn't feel any more dumb right now."
+            3125e9fc8b4b937d7c7abe5e45bb7a8391c0c0ebae2eb80657d47da6ec33ec7edbe4c8579d4922bfdf1e425a216a03c41992bc93086c60beca1a33383f1f069e.mp3|"Of course you wouldn't know!"
+            31463df8c311074dabf47d31a3e5673342d6ae53fca9a4adf57549f97ba823eb7aa253ed5d1bd66b6f9435cbd5265bf4d0d7cc2eba9372e9a6c5354d4df9e516.mp3|And I say maybe you both have it!
+            321523f49ef3991a55727771c1f6ef63ed2aaec2a61414044c93a8670f2e902033f1a55cac000931d4b995a7148d0c561dbd94831b6b4a9cfaa1d6b52e2c4993.mp3|That brings you good luck for ten years.
+            3258ede67544b2e61ab0f74a094c05862470d958c087b00a7c9df1c0650918b263f4f57000776a41be2abe473b6d25b386352261647ac78a31ab372f6206340a.mp3|I will be back soon.
+            353f7edc3e013de868383517c400720da85f8424857f609978357cc6815b35e43251cf3fdafef3a3ba4f0a696b29e3c339353b75281d0519990361d99cd514c3.mp3|Who did you talk to?
+            358137d708b3e04f5bfc63649c41ba6cd34e59d8eb0404361c9d65d4c1c06e31c2f12e7daf8889b32b0c71368ba09ff9882ba0ae1f64d8f2c234c74ae24fbdc6.mp3|"What's going on here?"
+            35f5bce8bea95532e2819ca90647860a3217e8c3c12cc73fef21c5e87654052041516cdd60531b9d62091c05d88fd56ed750f23b95b13e07248d26767fb6f543.mp3|That lady is so fashionable!
+            368ac56e095f0a4659880f1f19fb93f336e25864b961d246ed2c7a7c1064959905cf6da9edb8dfe39304ee997826a80b18d2ae2a47da629da1b8ebd3544ac0a3.mp3|"I don't want Mrs. Douglas."
+            36c8619c90c0caf5c7085cf4aa57a8e123c726a75177d2abe7b8648033d987f65d882c534cef412ef95fb75a55ca7104af6c9efc9e7098ae395b8aefff07e202.mp3|"You'll get your money in sixty days."
+            379f3c97f7b2278cfeb6b71035d070a8d29f572819a4675029db565f662b9adcfe6ae58915b75dc7397d9b30f141c4f16692239d6b22960859d96af8e55a30bc.mp3|This behavior of neural networks is sometimes called dreaming.
+            3876ac69c686fa865d16418398c4809d9e5adc9b91827e8f35ee4a4ab76ef305fe91fc4059f1f9407eaa506775e81573fb958ac6c7b3db2f797fe15860622d39.mp3|It was a suicidal stunt.
+            38ccec2247850f80cb10416cae7b175516dc0fc329e9742b582a32255139c897a851750727b1a6a7188f1f9fac34df5104680409e135c96377e1ed747feb11c8.mp3|"Something terrible's happened to me."
+            3933a0c8ec7322450d6fb980b66d8280309bb050f0cb2a4d4b744449e2a44c66a2e0b3bb4bb9ce5d78881014222e5bb868590206cf29b347147e49c8758f87ab.mp3|It would kill you.
+            3943270c48855dc15657f6ea0aa474a9df8eb16781c264fe446090e2ce26e478bb4810a628c4b96ee75189a3d18fa2e98ef6251f86356a9ae858863ef307bf1f.mp3|Picking up where he left off, she finished the list.
+            3978dfdca7a8706c2b0b95d3b7c89e11c46f9c8c1718d5aad9a08e5d5ed62895b98b4f08d700898c98eea175cee5131adebe9cc499f764f05068aa74ba085ac7.mp3|"I've actually fallen in love with him."
+            3a147f03550a25eeb62478d132c25dbaf04e74a4c85f2287255d828f09830acf45ceb509637530a509c5dbfa3c631413aabb2d81de2faf9e94527a9e7bc7c69e.mp3|I will need some sheet music if you want me to play that.
+            3a7f94ac5ac062253dda6bfcd469e41ea5acbe175175be81c68b264a160d0de1dfa3200fef78dd6425e27e4af318fcb68d13997d9e81b934281bd45fa3a5e9b7.mp3|Just look and see what you did.
+            3b4a6597a0d92c0bc21ae9b83cb13d3d805a2f64cbdc215285cd78ec0a3867adef4160727d5f6f016b38366eb93b368d36b8f8d5a3c11f231ac4ac615750ce33.mp3|She lay in bed, staring at her phone.
+            3d7e8616e8251d5bc415992040103738da8b411328b2247dc52880859bc7cb43283f62b953cc54084b0869ad163cc5033827b1bb580535ed886233e74027851d.mp3|Who gets your vote?
+            3db5d9a78df2059eb16e001d529e61ddb8da73474be8f5d957b114ebcccec1102bc237f9af73284d4e1dd3352608b9c77cd40d569679a75176a01d21ff0a5ede.mp3|"I'm gonna get my arm fixed out of this."
+            3e53f4ae95212c3b98bba7c2b6c3ed8bf04729d7afa498feb8b64ada24785355ab5889264af0e6c4efaf63d56443a69ef92ed64ac5aa5c1a0de20062ad553220.mp3|After playing tennis in virtual reality, he felt dizzy.
+            3f8f3d64550f9db8d8f97eff800d3a2dcae48e05e30f82c0fad25913c2cd89a71273d8836301fa3bf41174bce469e6a16b551fa1de31a8bffc173e8067033472.mp3|Anywhere to get away from that wrangling.
+            42195a8b3779507c3e50bc7e81e0dce5c7ba9f82de406f16ef435a7d4e698168c8102740645a68114249b1d21af7c77baf69ebaf3eef0f6225ebf3e60079d422.mp3|I feel I ought to take care of her.
+            428a224846cc10607983dc699e391242e20e273ed25d67750882a3b93471d3a435c4b79dea40b8d3b6873e8c36de2d660a46d9e9ce0b1ec7b3521e2a1de71271.mp3|The police have kindly provided us with a list.
+            428fd0fd43ef84b64a6a5ea142fd6534b09d20be64279a8a16e84a1ded8b15f3833db307fcfb7b141e9533bc76271fbcf43632288753687e8fe68e00eb77528d.mp3|"I thought tonight I'd put Miss Kelly there."
+            42da7f26bd4c50a361ea80d6b249b6f57bff1d7f1b589b75d70d04c3b50f2999f3e66d9e844031faf6f071e9d593ab9ea6f00306f5a5aeb3e97e6adc79d57593.mp3|How long would the interview take?
+            43fb609133f85891bc758e0d63a434dee4274747965123d5583dfb7d1792eea3ef8b669ec440042d8f045bb7d58b7560b38c24fb5558b329b9d42b4f8b7fc476.mp3|The homeless seem to like soup.
+            452df05213ddbdc3aaa1bbd5925eafd29799c08a546e014ab5011549415cdf379fd25bc2067f817eac9e1e15de7fc84e027443f0e2b95a422212f388acd221c0.mp3|"My dog is an alsatian, we call her 'Poppy'."
+            45488ecaccc7cc94db0169570abc9f018ffba850bc9cd93191989c4625e0545034b64e34534dbd2aae84e37d8a8cf64ae06b30d516f817f9d9d6e6f6c194d732.mp3|The S.W.A.T. entry team used an optical wand to observe the proceedings behind the door.
+            45bf8b3fdded623dbb78a488e3bc868081509ed89af61adf0bb3141ca2253a15488257a4e5353bd1d30cb96ee366da996435f6f73b3ddc396344f931ea937db2.mp3|"I'm going out with her toning."
+            46410daabb8a6e0f4108453d6a096d5803bd159ffb8cdab651ff1c8a5534169205952d4ca72778aa1fc2d3edd4fbdfeb4472ccf6a9534634b5a59988bd962d03.mp3|What are you doing here?
+            477ea2fa48f44638ee17fe08bc4b74d628a9a15fa45c7247b395315250a95ec7a9ae4354d1725e264ef0376822b9953fafcde9ed04b213112a21bce70ad738b0.mp3|Salim moved from India to the Netherlands.
+            48205969eebb701865ab108f0eed94b4031d0a06a595a43ef25c8b744243b1ae594587ba15801c5052c07110f4282bef0351ec679f11e1ceef9649dcea25447e.mp3|April cuddled her lamb.
+            486734702129037ee5a056087f712bd1829ed9369772dd955c63d90b1a55b340e89799d87091bd7bc97d5c64e867b6a730f248a59a8c430474febec5892adb21.mp3|Stay tuned.
+            48ce69f818a03e645c568b1318143d9d047bc37b53fea771c6afc1e86bd7b86d81c80804a23170344cf5346a57ab466e21a31ebde1fdde09799e741ad34baf42.mp3|Be less complicated without a family.
+            4a77d4eecf18e8ed32d1c9710db764466296be25d898c44e7d5577c06b6b94c6f6d1372d2f0e4790f674fe0ae1b452173bb59d196e90ff60714662e6725183e8.mp3|And we had a bite.
+            4bd1082a7e81a1da064f7ba6197ddf82187d8203dcaa61e791ffac56449358359732241fd4a47d91ebe569e3caf4685f99a099e50be4620a268839afd6bb14ce.mp3|The Adventures of Tom Sawyer.
+            4c12cf653e5edee158be047e7efcf32d3d9df03c26fb365b9c3b9b825558c34ca1a73bfcab13f76053101880c6908072a208cb260adbe86c3ce292d63a632411.mp3|"They just won't let anybody talk politics to them."
+            4fcbc47fa50b1c75b340bf7fc134e525d10d543b583c502fa8a7a1e946bb112672cc862b0e47778f1603a21cb9214d605f1c3ffad3f53de5dc61c35e650bf12a.mp3|We want some action in these pictures.
+            535bb09819fbb1c4ba1cbb46870c05af4c47ae1da739be26947d4299ab712315c1bd193368c1238ed750c0667dc7d2be2b0a9d209560a9e7977e5863a174941e.mp3|Can we talk tomorrow?
+            5364cb49dbddaaac088ad4c5e0201947cb370a7772392c1c1925b3bf8d8050720c4534973a03eadf2cacdae5256666255377c19eae9c33f776e949da7c3de038.mp3|They were suffering from hunger.
+            54d8f8c511f3d1187992cee8bd991c6c63fabdba2009c1e76b48fc1192e2dac452c5ccb2090ce53b595be4f360116686cfc13d26363c798a1bc715155b29c1ba.mp3|Form follows function.
+            563b6d03896f019e37f582f6d720511d7b26fd5126aff6fb1a7eb8ce63aae0a4bca55ab649c57b6c65e1909113350253eab22753b15d156701bf4b57c2bf526a.mp3|Take your paws off me!
+            5673b718fd0d7b5339d6db29ec85d6173d4d058f26eda8593d5a46908b19a3ec1a9f515f683cc09e14d2aa50fbdf2df0a5399aa60d6b8727b2a70c67248fb6c1.mp3|"I'm afraid you put them on too early."
+            5767eea8f4790d07ff6321176f078ba7743dc96ac1cbca2001af72ac172b1c3752f0d6ba30ef18266fc20a771c2ba326f7806b00b21d8cede81e6709e71f1ce8.mp3|My uncle is from Brazil and he is a data scientist.
+            59e5f66aad9c76c7b1066c5bc5fc7b908683a3b4c855c2cc4606bf085f7afddd94a89ded9c41907992b337f5a7556ac2f55933791322f14b308aea12957d8db1.mp3|You got your watermelon.
+            5bf4894c0b123a80777081e183a8833fdf1fca76ac7aa0e15792bc16091f9a4f6a9fb734b21a1357a641e3af517f361383af4cd1b09e2352e3c17a709a6c1926.mp3|One that will write.
+            5e0a6a5c08b225faa3bf5d655d39f59d3aa6e08c5cfb136a2375ec99b3400551b73a2037f4910fb3f8509ce3cf6645baec58df020e1ed131ea19cde1890511f2.mp3|Go to this address.
+            5eefa911f82b17fa6aa5a9283d2b17970f946d9c75c9b7e7226c28eaa2366f3b9ab41ef453e4826aa2a50d371fe4de72ca6f078d1f6412e082fe67561388f03b.mp3|"I'll be a monkey's uncle!"
+            5f7b9eb5cefa0ed56d97fc8f8f93f0380d1f3a602c1da4c1f12aac3419fbef86d6728a67d64d9f0a12e37e75a1d3233cf067c37ae0d83c1a8393e591235ce002.mp3|"Fifty bucks ain't going to ruin me."
+            5f92a80e73d8764316d27b48ff0b37473ae45f912c93c2cc6a30e68714067f708287f6da9144f06398a23ef0e04041bfb4567e23690aaceb3ea6990b6de61ce5.mp3|Sports, music, cooking and other topics are covered.
+            60d65c73b8a0112e094dc28ef17f0d159e41e7bf667ab44b75898a01e44d33757f614542c668a04a968af29bdc4820f8146b7f496d0d5269e104e7503a3b1b98.mp3|Four hundred and fifty dollars.
+            60e3d49838a8d78992d4111b579b86d3366150eef6144d53fb2d31e1ab31e99c17b547fe9bde0fdd9828e62d73a17f9f829296f6ace622526853b6c944d3ec99.mp3|"You'll get into a worse one if you don't."
+            6288b9817e16d7791e1ddeee30b97aed24038f5159eb6b793a92c30d39ad05401e5932642a7000a11e805639ea201363ecfa15932036d91e207fe7e92a238089.mp3|"Do you know what's wrong with you?"
+            63bfe802fdfa03a04eed837bf7c655a1669b2917ae30e434854c828a21e77b3d31f05e4b668ed1d2c71228bbc924709533677f6175eb91e360649992593736ac.mp3|What is it about?
+            64802166c07f53b6be3dc6c98bccc97ed4618d567d1227ce2f5fd6879addd48b56e99162348207e929b5bc8f0ba44a9c7944703f46a5003792275ee56ac1ed9f.mp3|A whiskey is the perfect end to my day.
+            64d2d03ecb3b292914721ea219552bca9da86a1d45bf553009c5fe6ae9bb1e0f61d68fc45efb59a5ffb4288fb42f359dd94117d8c3900c67759c59bbf4bc7451.mp3|The train pulled into the station.
+            64d3b13d30ecd992dd4f0376eb6e1732762bee1126e9b79fcc3c141eef15bb8ef7c7a9e4c0e64baa0f471cd229fc41c478e31aa8d1453d23f91746c46126ac46.mp3|Do I knock or something?
+            6662c697a6b76cf43539071656822b4956b880ba43916f83ba308e8fb4feb9c5a347101722278aed26e0b07530342f5f1c3794dafc40be07b89607675546dbbb.mp3|"Don't you push me around like that!"
+            66d96ea2081a404a5d5da646980b121e3e262d0751b93fd61794b997ffc01f9dc11c479e008feb84e0920d8540804e90b9e17909d0f94e23a33c4c25ffccfbd2.mp3|Just like an organ.
+            68635932274594ac5a23e8aca6ea4f5d6952837f27cebfdb9ab6dcb23fa9b174fee7b3659596009c11fc7801778ca788678ef2c5ffe73715dc29bcf5aa056abf.mp3|Gotta be gentle to suit me.
+            68a0a76c92d56c8a1947d190a35141e98f00dddf1d3f2d57653b62396e216f746ea18decad533d1a31734cfdaf67ada89e21d896d0d3c501f849977d6e323de8.mp3|"I don't trust anybody."
+            69b822a55ce43828c7f8fa159f9c72248c525651cc87098db17f3f726fdd93592c618e955402f22db2b8e6be7a68b2463743df89e7e62cc51e9279b09498ee71.mp3|Everyone is just standing by the building, waiting to get in.
+            6a27a1a891b987fb0b943d4ecb02063fa063e6c0fe9e42a8665516788add2484d7e4f7c34ea7359ed59b60ddc6e5ec32a3c2d74b7495c322017769b7026dd125.mp3|Not even a stick of gum.
+            6a6aa16fce3e79a9a65ddf121419f16a0650a48849cc6c3f3982bbcdb9186505c862116a26354d7a68d94dc9d38f7444c3b7995c48690094e8c503f7d7762179.mp3|You fight it cut.
+            6ae7b08a08010cebb1f37b7fb69868af099eff3a636805f859bdd11864d81a8328125047342084e64ec4a7e3dcb6f8cc205d847e2defbf38d595a9c40fd5a225.mp3|Get a load of this.
+            6b0af4d4e1640786ea35a71bda3151430dde859897e91ed5b36f56f82905cf3f46bc299d1d527a817a369a285159985383b653afeee42ecf9904a1b10e2b836d.mp3|Got to be a sergeant.
+            6b865b9a4c90c4878ba771af7fe8703a5ea2394189c628dc3bca81b1c211b3f6550f7888e816263821b4e2815cd88652bec617bdde65a92dd4bb451a4cde5eff.mp3|I generally like jazz, but this record is oversteered – thanks loudness war!
+            6bf6ae2173c4d7b89c6ea1f420d04145762a43334bb52de30502f6f2c470b4a6b226148e7bb0da9237dd1addb8997511863d504946dd8b1c7a46ca74830b329b.mp3|How are the weights computed?
+            6cf3ac294345d266c550dfd58b0be70806d54a3fb482c91ff3188dfd11e0e2d16ee6736d49b62322a89a5b2fc556888f78a6e26903fc19379769cc6051f79200.mp3|Do you know what C.I.A. stands for?
+            6e041e74407cf57265dce730f4104c809642af9bcd7a0e01735861b092c4efbc1532e0a5be911184e33096871dc7d501c8fca1a9aeb52482bda58c11cd735008.mp3|I really did it quite brilliantly.
+            70dea6560c95f5f9f433385bc48e58ebd000e03ce8e174ca0186e8625a7c68c9ecfcb1bf3f53305261d3fe66b951c1698ea3318b3baa94f19a3f54fb3c2aa45b.mp3|No baselines or comparison to state of the art is provided.
+            7128a13a99f3a2325191108b2e83776408b498748e05b637c0e639badb2b09df67626e58ae9570359cb414cc458a3966b0e48959101f81d79e4ee5c27b475e81.mp3|Something just flew by!
+            727f58867bb585f9c76bde5229d8d430f43a196201c06ce269b46a2159a0f74dc309357443abe5875d846452a454f6b38b09111ea6be10b0ebed430402ee955f.mp3|There was no trace of him.
+            738c8b023451278cbf76c6427e466973d0c5157007861cc8c24dde56323cf9025460343c5b63e0e738143115cf594f36916fadecaa6c731f3d6cae99b072eec6.mp3|"""Jellyfish can cause serious injuries"", the physician explained to the patient."
+            73b3100f08aa01ba62b49cc0a695f85f51896b018d2a8dde54505a0acd553019a5bc94de70ac4377e8ae74bd4ca01d2205cf6044034e9d3917cd94c190c87e17.mp3|Not only did he manage to do it, he did it professionally!
+            7417e049ca9906fdce6dfc451bda0143dc4b9ff66281b49eeea100fdf62195c431747aa41d5569ff1248a1476d4aff15f260e794726f7a0eebe50f8350797394.mp3|The sun was very hot this summer.
+            74a91dfc68885f1746d201f50f6481ec3ea99be440d72acabb6b5ed653eb6056552b4543293308e55ef1a60d7bcec0dbbecc1e9d82ac06a01cff7c9c095016b0.mp3|That is no longer a problem, indicating a major improvement.
+            783effe0f25f85e0f351c4d6781a226c25e90d18087c92789df0793bfb05f8bf637d8b15335e24885a90b50b4f9f94120f97d0b829740a145bc176de8f27a958.mp3|"I'm afraid the joke's on us."
+            796c649622e4ac9882fa7edc82a1d81d7d3b8c40e6226b62f4dcb0b83949600d9c0f5e56e7f4f5a83ff8f0153f874f51c5f77be5d63a66a9222eaa592e641704.mp3|I think it’s too overwhelming to introduce two complex tools that basically do the same things.
+            79dc508cfe691428e1625f4d63c3a280e0ac2af63b5ae923a3d70be6531774bdd07c7e72d546534cdf41423033ac3b1e9625af8772ac320cf439336f5e88e197.mp3|The sparrow and the songbird danced along the fence.
+            7a29c8d436edc05b54256e1b2d5d035b22ca7c27095fab482c337c3c984934f475812e31d20cb7f4cc9c450badb65c3becb439cc4b3ee34d015266018a14b81f.mp3|"I'm afraid I already know a great many people."
+            7b55f10bc73383fcc37dfab05363eb1b548a69108441abcd353ba489130cdf702b8893e2c835cc0b0a6013aedf0eae14bb3de257a60e6ffec759692afc91a9e7.mp3|I got the faculty all up out of bed.
+            7ccecb52e3b0e247ddd22531c8eb803dffb5244a91f0041193e96b00324396843584835c88f216f822a5f31e23d2e934f5a495695cbb2e708f6af0946856ffcc.mp3|Why do you think I brought you here?
+            7f090ff8f4efbec8ef6e3d05280b00fe530e5feec46adccab1a476648c2382d2bc811bfaef561b31509c8822fa6ca2e8b5ca615e0b1dcf1ccaf29e47f12805f9.mp3|"All the words you've got."
+            7f5c0b2578b476a5317476070db4e199738bc66b00d9c9fea9ef54d56143aa0b3bd8b8f6f67670be697d2b07bd602febc59a8d0a991c1893fa695b3e1b432f92.mp3|Would anyone care for some lavender custard?
+            800ef63022ac6bdc90ef6c449a4e6ff79580b34f82b7160a6d3721d4b357084077f8ace5d3c2e4b2ec5c3d8c6b0dcf661d76f3715bf01090495e28c019f77efc.mp3|The art festival was a disaster.
+            8060dbd7913c3db105e0a73d84ae89abcf17259876b473004a4314bbbcbd1d263e9189e4f0aaefdcfd6e0e4f7106fd0603d2eef1857230b96840b41697e577fe.mp3|Bless you!
+            809526c9efdd6d87cbcd69a565d09fd95506ae5f663af5763bd086a18a481c2cf585fa6b59370a23eec8364275f6cb1854943fd43720ca18d192f40eb0416011.mp3|"Doug's a good friend of mine."
+            80f92ae24e8c59e4c39640427eea72856840eedef0763246dcdb087dd3a5f70d383eabba95282b7dfc8ee0e95a59b136410c053c1baa7ba6d46e37979c324c6f.mp3|Television can make you dumb, but it can also be good education.
+            8142fa12be95daa3a87b1a62606086acfa9ebd1cf1ab3cf79adba41898d9b2a879603947874bee93e0a7f09d3c209b1ecb7d2b4a6980e9ea0bb63e44c8f3609e.mp3|Hold your nose to keep the smell from disabling your motor functions.
+            826d889b91548a319bab0c190eca40e4283007b647342e115ca00aadedf1cbb3327ea87ee3bfd3e603403f0073f6374f0b4bd1aca0d71830767d654ab30a82bc.mp3|Show me some gratitude.
+            827c9adbeddcf60fc17c42139ed8ab69bbcb9dd9eabd90ee38bc2ffee3af9e0b77bdfffbebe0303f842c6727b3f741232b9ef0de7666bd6eb5e9c3bcd6bfbdf9.mp3|When you start to eat like this something is the matter.
+            827ebe77ba043c872203b2488153e89897f8baa5939718860f7649e4f133daf7df134027db7bfa0a894d5450830cc6fb15855f5d4cf38bdb1ceb054865d7ea0b.mp3|She was supposed to come down and get you.
+            83b0abf89686aaa8dbbc4f4c1e696c8b9805ded5408f9c45c137b2a0f899424211a8ed072c4e9d8af2d2ae428765373dc76f389f6a69a14af66ba38e35a78ad2.mp3|"They're right in there on the desk."
+            84c7be74df8ea2cb9bb45ceeb2f6649c9b64327b32cdbad869c76cd9d4f57ee8059e62c0fbdccdf007b395fe04fef81a681cace40384e062fbb915894f168f3d.mp3|"Isn't a word of truth in it!"
+            85c4a505b3e9b9b5fb4d7807637bbe5cced7cb44ef02a37993c84da464291eae797d8014defc0e3ea4026095a11ea69c4910e96abbb6584f4d3b55d9cd33654e.mp3|"He's already killed three men."
+            8625c7a7261404b9e86ba84cacfb3ee68994c6970b9f4402a077faf715fc89d357d392389e7565d5d5f39cb1520c9fd8fb8f0597e9dc02691d27f260bbba6745.mp3|"That's comparing apples and oranges."
+            87254202a2c4dfcc4af14c6afbc9dd77e58d82fb7b88fadfdb97be0fb83f46d025d8d40d4e45aaf5819945f38e4a6e7162a259cc646639adb453c631bcdaa068.mp3|I think the Firefox extension already does this, and I created one for Chrome, Tab Namer.
+            87cb072999e0e47dcb0161212c581db32585060b437a5083b5645ef52e5f8a4dc3fe0bc76354fc0c24f928c2c1842ac1b4d45a5bad6f9f5619dc36ebf9e18481.mp3|"I'll be right back."
+            898d73c313f7cbfc5af7de53e243653ee0a7a100147a8c3e69d19388661de551af3a6910b2f7610e041d5a17b2e48f5c722743bca7d9bd83e1b5c52b9a340c53.mp3|If you know the time why do you ask me?
+            89bbc4c7ada189aac7a512ffe935f9be69ec02c155c363b43d8559e8eaa5df2d89403263b72143ad649ff8a1fa51cb127b52bd8ee5f736fe9fb27ca223985f78.mp3|Now wait a minute!
+            89de25951b7e3c46c92b2e728f9a03ca450922ec2330ed7170ecefd91c3c21403ded740b7e77965c1641bc3ba52de79f8299207269368919cfb6a3a6a7904f93.mp3|What does he do all day?
+            8a0d590869ef8da2d2504ae7f2b61440ea874bd878076cc7636ee992db2a8c64b3548bf99c64d5439385dabaa070c38053c3779d2637c044d2ee3f8aa53992f4.mp3|Just finished working.
+            8b3f1525d72d7c3e2a95c6f82a51fc16edee184349642d9e6b1c06c88e0cac984b1f036830794424ed5c27221eb69509e82b2b72c222594e4fd7f24dc124fafe.mp3|Tux is not smiling, he just looks nice all the time.
+            8bed6de241c14a1778dd13ce756a4fa7b7ee2fc0ad45abbc15c5e88d9dcd1516a8698e84099ba46fe898809929aaecce7adfa0b15c00e2510e4782c4f0ac58ac.mp3|Everyone toasted the bride and groom.
+            8f572fc7472e3fd5d5ec31f64de80fadf89042117907bc8586426b7bd23b8dbeec94650893ebb74d4a54eb892f86a0fbd1bb74c256646055f501d5fcf45ce263.mp3|"My leg's going to sleep."
+            90b3321ab913e343b0537b4e5069a54768457868db3ffce8643a5ea6578945a6fb1b4dce41d290b6aba90cf4353a7a472774a40e6f414d713b6664e0cddf7b32.mp3|I left when the zoning changed and the real estate market has boomed.
+            90de374c9f8ec2436f6e2114e3147e287fa5a61a83e4ea5015b88cc645207dc23e296b913f73fb624d6469b15ee70931a55408a2ddf429cfc88215a9e4d8eb32.mp3|"I hope it doesn't plunge Jillian into bankruptcy."
+            914d657884f7495c1f5f65fe713ed10a2be26ae52702739842fceb3f764bee1245c0cdb0d3a2766775a679d3abc8fe4e8a104a8495a5b37e7972fe5abe2998f5.mp3|"Can't you read me?"
+            92fa6dd114ed5108b344af877c684dc2d7f014c1d916b107f5d32a5716203bc541ad18e2fa114b29925e363dd01370b70c6a36d120fbc512a75bcfdd28eb4c2e.mp3|The Londoners regretted visiting this awful place.
+            93aff3ebd609acfe91591fe691f80629df4e9e76ff35c47210e0b07694f30cf16c2ca39eedb2972a05d0de140f06cbfc457c3fb8cba3026282d46e803bf7fc8c.mp3|The millennium edition of the album contains multiple remixes and the lyrics.
+            944469ca0a1f29c1447ffe97b56c8d50fa8c10129bc5ffab170007e3e3c544da5f391b155adc32a8df7617a1f2f8305db30972bd8ec35f0186b190da1bfcf46e.mp3|"I'll kill both of them!"
+            94d0ee13b4c7c461ce959ab6422122d7ec2e00c95ade0d62632637431a4582402b5b11b249758d62cc0f34fa6b7d94c06812596ae72f9131dca9253ac74198be.mp3|"It isn't the money."
+            96d11cefc6aaa8619e72153c186fda8ece2c933ad2531fd61227c9b1938f4d1058c84c963e1a4e233d08b0aa8f18cbfbd998595cd8f79cb41919cfdf37a818e3.mp3|Phosphorus is not a semiconductor.
+            96d7786166145ee4479bac45cfa5da1af4307fef83b145fd1ebcd29e6b04c21469fba6eb533bea79b1482f8023284608834769ab9aca7f597062e22d403b1c6e.mp3|Somebody would have seen it.
+            983eb246192bffaff5f0a115490f216d2b4e78b5de7e7f49531b35a45b0b640b93052715c6369f5ce0ce4866511813c066fbf549ecb0d2c53b44f6fc11499f7a.mp3|She diluted the broth with chicken stock.
+            996d0b6e7d22f0acdc7d9b35cf0ad861961683e7521703b3f6ab0d78b3d6b99d389098a5447acb52b258d4ad95efe1aafe37f7cc86c1a5ddd1f027bd8818494c.mp3|You should show that your method improves results.
+            9b14d9d342fd967d6a9db16c4a08979a6abbe68c9626fa1a0a869fedd0f2eac8d23172b523ee933ffd198fb270f959063021c5f4de2e974a4d8e3d939e73dd2c.mp3|Come on in the office here.
+            9b940609acfb10f33b64e54ef8f3ecc6b4a43d18535a4c510da720bbdf2c0c4a97588a2f65f0875cd761bc1b72782e1cb736b93c9448d87a60ef4c51feaf9ec3.mp3|There was hardly anyone there.
+            9c6997e9fead4044a6525b1cba4dacf6feb4baf7f572c6f7567562fb336ee6ba35a63094061b7f57c4186f15eb942644635a158888d2a27ab3aa561cbd58347a.mp3|You mean spies and things like that?
+            9cf27101414b35d4ef7900c3b07f5adcb5eac48c5ddc729cf4ab5548033a67284376cc5a4d763ed73a0c7314af26cc14d2ba4593125b068e52adc4d70a7834ab.mp3|Holy moly, you were fast on the zip line!
+            9e80146536714af3cf08bc10972b41b6170c43ea5d65e4bc3f36be35890efa8acebe325ba10e832e4037355bca6445b5abcc11b0a6c4ca176744b5a11f388f37.mp3|"Don't make a government project out of this!"
+            9f1878b1c553c458839dd40a32ec1c428db48096ede9ec06d5b62161000758ed3ca8f753ade7305f4d0a936c22f92b360d7cf4f4eb5609999fe0534f2a7986fc.mp3|The incantation was written in italics.
+            9f852de2a699e48aa921a4f2f6937bbd40fa9027ed6c7acb48ad7cd4177474295a61ce4a266b0e5abb56894d4f2a91cadfc8f20e2d688ae00154ce5553455d7a.mp3|The world wide web is not the same as the internet.
+            a03746615b1248df7327165707d5bc17fa14930478e39b6c4d93e9c4decf1dacfb20421dd064e57fb3a16dfc0878a91efa09249e2cdf41a0bcc1a896652f59ed.mp3|"And I'll say it in my own words this time."
+            a1e4e59f6858ebe36a76be14e4617ed04ad966849f20909ea7658be7935ad5ac9314c72a25557313725eb501a6ae6ea15170ce31a821cca2e8beb4fd83f8086a.mp3|But she is gone.
+            a27b89887415456fd6bb66663cd57d6e3d1d355cd0017403cba71384f40ca4f21dbfaa661706c9993d641cf091476e2a4e6e81a6e0c1506e6f12360fee9892be.mp3|"Couldn't want a better life and death."
+            a2cd746ace334c93bef2dddd7c7bb014003ae22f7173ccb22bebfa0b64a478ec0ea739c635f4701521f64334a963e43dccb358c51e3efd15243970d83c99e972.mp3|It’s important to me to keep the Internet healthy.
+            a3921e968ee31996a1b4c455f062efdd9105afca2c3b961449f50f72060f8f5c10214d76b3350f3a327bfa00dd6989ab55fa71373ef563d7ca07608869796be1.mp3|The forest burned for thirteen days.
+            a444923e3e1ecaeddc68da72138ba971a4bf767c9d7d80f972f8ff496258381c4f64999e08c923d4d434ce002fb9f13da292565be76aa1301ffb989d4f9d321c.mp3|Life is complicated.
+            a472f295edbe84fc9a11b7cd5bef7c312f3d1a7e952ffee9cc437e014d148221810aea45675128781ffe190d419ee4435f10522db3948ade0e511347a63b40fd.mp3|One of my best reporters.
+            a67e4c0fb65d3e8c27a66190c77822099e7747930ff13ad33d985298e5345585f761f36457e9ef6d2b840a6523af5ccba4a06f77d6c0ee2e21b16b48f655cc47.mp3|"We've run out of petrol and diesel."
+            a77d7dd2b1f1e0877ccab2603d9c8853ce5fc3a1c097db0943fdae9f11d122bdc0457bdb9cbade3d2e2b1a35d8f4d6435755c1ef2a74418391abfc5d16b61aea.mp3|Canada is quite cold at times.
+            a8f2e81d65985486cfc4d81c6b100ebf4a3a841599bf803a61f93d3b247e164732e616fec7ba9a19bf3ef7b9b19f98f2fc37fb2e339b4384ef1ff2a10cd64500.mp3|"But you can't do that!"
+            aa85b6c7dccb028f8f8371e14c3c03a654a6c3f2c6daa9c1d51a882e748a22c106bb0f9f771bb887fa0da4fe64b2f7f035606e33f3c3fc8e9065e2af047e3903.mp3|"Here's some cheese you like."
+            ab47eaa7c7904ac27e872b0fb2a4e1c729778cabf92e4e32d2b86916a029e565dbfce60d528f3ff5ab8221068ca0b86737517129bbf8af649381814fbbdcdd6f.mp3|"Maybe he'll give us one."
+            abf43b2b1e78a45f8d8b7462c35233d8a44928c189cf30d65d6554f488cc0c1460a5ae2766fa02619be0125d70999a5e3aaa6991beba76c9e78c050f02b033df.mp3|"I'm afraid she'd feel ashamed to think she hadn't trusted you."
+            ac8b57c9df146e62cf1a1f69bbc644e042a7250892b8cea30febd0a239f5ff1a260b4ad2b77ab0cd2d4e3b156d834f3f7f2c09132221c428665d90eb162dcde5.mp3|"I'll see you get it in fifteen minutes."
+            ad0371dfeeeb0d5342462bd1c1639c6e3a9dd0f12c8c06988092a6ad8a626b7b4b4c40dda18dc0ee343528984efa899be4f709668d2f5820e74da9bf9347f7e4.mp3|"Although searching in binary search trees is efficient, you won't find any fruits in there."
+            ad807f8b8fdcb83a118d592e49e6c0077c3a9265f1e29e2668c6c9e311d5ade8bc1f2df42dde972b35d4ed6bba6b1a0c798f37debae948da6e6cffa595dfc866.mp3|I said good night.
+            ae28d9dd730b315a3768411f2302c697e8a20ca20d9c3958f5cc73c5d77f7b981e1cafe7f9b1b846e7ae0d9b05826362a67f3516ffd4ffd0127ad5cbad4c471c.mp3|Your method is systematic and mostly reasonably motivated.
+            aefaa830aaf5274e319a10ee5d507fdcf86583d044da573fc13d86bc7711b61492b26857e907e35165257662f809fcfbffdfa248cc9b15ca7e1873c3805e0384.mp3|The frog climbed the tower.
+            b15726a3cd3319ecf13417a2be464c59dc7f5162afb9126da5d55811eb75da707791c8cb5063b2515a1a924d889af36547fb41654c4d726674c27f9b1edb63ba.mp3|"His boss thinks he doesn't work enough."
+            b1637b1c65842e2bf73b870416caeb7648bffd7a1558170538823a78874fb80c925f17fad3bee0a22b4b4a707237e483982b5b614dad98448c9f527f2106d54d.mp3|Chad waves up at them and continues on across the street.
+            b22398246c6d2bcdf504a26c9908f584d4d3fa32b809d6ddefb0b27b94cdc63879610687797dea97d878313001005c178bebf25e3da3b36ecf127a29bc0cab93.mp3|The Building and what?
+            b22ace15e607fdcfd38066377a8f37415c89f399173eee0283816876d2d39e9915873dd5bdf03615e954e2bfd9be3bef899df938bea0c1bf8a93f1abb968885b.mp3|Doing a handstand needs a lot of practice to learn.
+            b288388b2bba273e215ed57310a4c35f7af728ac6ebc8b5f21d0b0f5dadd710c6c97fb78e55919c1fab465d4c1827ca74ddf2893a6aca35b3254f8c3412066f6.mp3|I like crepes with nougat.
+            b2a56f47035a44d5446b92cdd6086a5f77026cb17048e6f1c4a8cf0b61f66914c68c4231fa3a46a48cf0c927b0489b1ff39a1b2ac3c13905f7653336c3c24d12.mp3|"It's gonna put our city on the map."
+            b3b29ac00607b061c32fbbd6d6411b7b72ccdbcf7a5aed5c40d3237eab92ca3e3383bb6e9eb4089eeeed45fef612ee8f1011f64ff9b4f8ff82321a08ba8b9f8b.mp3|Who are these people?
+            b3d60e9b7be10243c401bcc9bd58db4e583b9449c764fcbc7284a5be36244fda087dce56b218400ad157628dc872d0b6e10eba74bedabdeb84fc68fd31dc81cd.mp3|When does our plane take off again.
+            b3d80fe19a081569f4be825cf23b31ac49fa366456fa9f3c5ef9c1e89ec80378a6319d84f649d615b199d10832ad34e65b2c7e20c19363a60d0991c87804173b.mp3|You telephoned me to meet you.
+            b4415ce8faf07c43794045b9deb0fff0fb5bb108d13ca5f80a5c4e354f1b16cfc2ad66c6861ec5235d3a27f96df2f60bbce1cc915c9eb36fd69e96410ef9a90e.mp3|Angela wanted to copy everything he had done.
+            b5947dfebcb00dccf8df0b4c214a4a7a700fb73efef29e0c4044017e91df5caa55560c1634c4597062bbf8bcaf24a71dfb43f3a680f40106e8a96d506c17ba1c.mp3|"But it just so happens I've got a picture of her."
+            b82aaa111bf8a1728080bb7bf616f651fe3a7f3a5b6c4bd7a1ff11674c1229ce7f9323bd78a10aae095fdc4e4225cddcbb7407950fd88d49a9afd94684afcb8e.mp3|He offered the kids some ice-cream.
+            b85d766d10c95e2c185db17aa03744dbd13e727585e02666d4fb2abadc9564d1e6bbd5faae00248410abfb59d7d955b897c11c30c9e058f1b05e4a16df452bd9.mp3|"Too bad I couldn't see this guy first."
+            b9e05a6a18d32e022a7256e8dad2f481f0ebf59b137bad71a38c19e94f1bd1c2f9b08c587f65ad75d636855f48dc4f1b47dc9538ad2cc8028c13abbd595bb424.mp3|Downward facing dog is a great Yoga position for back aches.
+            ba33141b5e9750018febfae5f831f2e4bb8e11ca0adfe732baa6eb4ffe1392b11c597e25b89c397b7cd3068b22a4281497ecd62ad090e1c040c06a215038ada3.mp3|This is the hardest part of my setup.
+            ba5ebcf16f49aa056d08821949cea5d53703e0dea04f6ef1d9d15e4880f8f741e6cf0b414c6cefe787689a14c2126c04561aa9d098119dca8aeb1720d083185c.mp3|Take me back there.
+            bac62251ead10a441395888c939ed6390ea4a7c8ff9cd14f52fc327632ff3f76796509117e5e468bd5993b6d75aa1728a437dfb6e990b0a211a1a674e08e9e2e.mp3|The vertex was out of alignment.
+            baf06bec09749b8d57f36e1fd478a664712538ea38b424db1b84ead215ee2b3930ca0c4c770d8d59718475381c458e52e66f2cba3f3479510135f78c5e7e203e.mp3|Take her to the infirmary.
+            bb8208ac14d491e1ecdea5af95930793a8c8133477daa3801ba4f82edd7766325978de67af748371c5f751b2d491e910db0445db2a2a829a821d0b95fe04019f.mp3|Instead, since I almost always run the same set of apps, I pin each of these to the taskbar.
+            bbc559dd59ed419b59768990e2bc645f0061c3b8006a1e34dd46cccfd7564c0f935e68cef30ccb454e8c888048ac5eb22e7ead9ad936496030f98a7cd238f4dc.mp3|Mr. Bean is the main character of a British comedy.
+            bbdf4fc8f90761bfc1aa5dbd6435e36ce1c22a92e37984099ddaaa54faa1bca4f6b05117bb8e86c6f84b86aed035c7f1c5f14eb22615c080b48422c3b77bff2b.mp3|Water boarding is a terrible form of torture.
+            bd0477e0193651ccba64a4dac3b1bf19c6fee48cf9e1434d9c40638730048e2b042d2e573418fac8f25af4b77c844b34129fd18a1681d00671bfda47c4a79e60.mp3|"I'll be right there."
+            bd30ba46e1026fec980147ef1d3d684a03d5878c0c28312b9d32c3dd3c7cab00b45182155a0ac0af81292115294b455d538b123f86940f9cf557fc6c9790535e.mp3|"I suppose that's true in a way."
+            bd569fe0c7156e38e28e77bfc7af7de2b4cc4199309146b69fc761ec965b56298b5859330262fcf4c31d9fd8dbb46a3250c988a1e7f6eafc2ca75be13e27df8d.mp3|And you know it.
+            be23ea77235f5b973d0fc38feb7e7f49c123a8cfb55d1b779d3457a8827645ce0f17f7500b003f3fc3a2c81096100d55b57a4c71a0fff81236d14fed29afef94.mp3|Pedro hugged his teddy as hard as he could.
+            bee38fbd8a8777421a977ab3eea680b5e859bc4bb5c79ec173f43e7072cb3fa6dbd6ea980de6e55fc889ed8f57caf84f366810b9a0969c7d62f2f6a2746307b1.mp3|And got it out as soon as you can.
+            bf408ec6afbd369d0dd943c4b111f602e26e09f1598d6e04bdb0e837454e9655e015ad39b0c0488d3211e1b4fed7339d2a46ab11b1b738a963f1c7b86b66f0ff.mp3|Enemy spotted!
+            c085d910bdd3f7475ef9eaa37e04c6df3d2abaef9ea8365265909fcfd7944c2972ca7ef0d33c58de8f082a97fe88cfc0ebddcfd2cecf676db841f2dad9807729.mp3|"Thank heaven you're here!"
+            c1235f3536358e8b56f0bc402e8be66546116916552de2a3e7c95f073f8a9ed401c7713f666c36d9ebbcf76f61447d21749ac71cfd89e8637aa4bb15270ea4ee.mp3|"But everyone and his Aunt Lilian's been through that bag."
+            c5e0f52179775caeea3afc9685323123d09ca81c28a81182ca2368d76fd1af0d7d216256cd82417be6019a787b328f381f53e0ceb33cdeee3f429dfabbfde685.mp3|"I guess you're right."
+            c6bf8ed13e75d9065cdeab74659f1fe377c98752a01cda4d3af7854778b1a12718da590fca638b6fe87d5ded66a99560fad4f3da652e56d779e1c1a690e51463.mp3|"You don't deny that."
+            c8ee3d851f2782971475b8362c199ddd48f89423b6e512f4af096d0913adeaf39544c777ea25c5609b0c40722764fa4542c1c904774acd05ace2b6901360bc69.mp3|Caesar salad does not belong on a pizza even if it is vegan.
+            ca2dde8b08b9342f98223e17ec354945008706bcf0b2dbd1d9016eb190e91e269ad3dafe9e59304b890996b61c49e45d23d7e38636485beda7e6b1b774658b8e.mp3|"That's a sophisticated mechanical system!"
+            ca6aeb5f8d2356612cdf5338688c44f295256e86b6ad062b17c66eb957e729431c993f425b81f73929079caa4f2d675a7b9acf99606a9a4a7fb7856dc4d85f64.mp3|If you dig this tunnel below the building it will collapse, so I urge you to not do it.
+            cdab8f0fe39d6ca3a5a4ac6767aef2454dc8d2b90d1a2d32325205377fd33ade0908240e59dee7b5e4718abda275d591cf870dff4a0d3b10dde989f29b518123.mp3|The priest collapsed backwards.
+            cf4f4ffec4e617254141e2888d622032f67bfd60c0b82537e78be7edb012126aac685d6b796e1e2daf1bcf4a6ad16dc31496f021aa2efac26c6ed4e42620ab0e.mp3|"And of course, it's not very customizable."
+            d0745e3d19a066872b326dcfc54b736bf94da2e64fd5b42ae4d4e519b1bc1f7fc0328400b4e42673218421e7a6b6afa642455d54de1c2f1e0d87919cc30fd50c.mp3|Below is a letter which reached my desk this morning.
+            d10d85dcf052a34d21f2cd05f3c275d39ee862fb26f1677ec4ea298a2e3895eb4c38fdc7ad4934fd4bf70bacb8ff3ad40effabfd7943423092cf3b5d3b1804c4.mp3|I can see what happens backstage through this aperture!
+            d278fe3c23f21dcf8f49742a17660de55aebfa57d418016d15c89880162e74320107bb2ebbd8419e26f59c1b8d75a327c8a4cd292262a849f3d339e13ffedf1f.mp3|I will cast a dangerous spell.
+            d3afd63f33639cdcccb4100b1f08ed34fb45161d99940bccc2e9310b07721037ef97247531b9dc7c3c665171657f575738b95b93fe94555a5000ae197de87069.mp3|What day is it?
+            d646ab895fec9f798a05532a6541d170d7a03b39f2e4cd7af3ffacd0799a9c7ad85d687bd72a446440de41aa76e08245799a0bfd8c06a16cc192b6cde4736854.mp3|Never heard of such a thing.
+            d67d57b3a8010aa2a14160d61d8fd37384e71878269c814d0049809197b268ff3c225328353f355e50855499b8fc64af90f0338f4e8d23dba3ab6245117e5a68.mp3|When I first started using Dragon, I was bummed to be restricted to Windows.
+            d724260bf225c73ae71fbf9c56cf251a2116fb86542f85a9f21286937c10dea6fbf2b17752fe50142fcd1d68321288c2aacdd7e84eb64f38aff390cd8fc36bd4.mp3|The rest of you get in here and riot!
+            d7a0d889489a2ffa14ba8b148e7e1ad7ac23bf29f25414d6c005eb88abfd9b7acaca6eb323865af9c6c16e73759ba92863dfebc20ef4401af00eb45adcabc84c.mp3|Steven touched himself on the back of his neck.
+            d8e98cc51ee6580f4d7b559627ebdafe120e27edb3ac04f9283297c4f4ee63d275fcc8170f42d2ec1cb0f0b2e8d5209e2c6b4b3ac11d6e18baf96b1c93c946ba.mp3|You will need some rubber boots.
+            d9087f861f42ca2eb54ee163700c625f7cfe2da205a79390b64fa02f606ef865f3fb9d2ddc29f750785b21f2f604187941e0029ab1470b52bef9ac4ca705d73b.mp3|"I won't let you."
+            dcc4d26575c9ce672b2159bb743d4700dbdf982ee2d244fc68ea2ebf44e49a86e8910ce73c15cecd14e98c582909f3bc5a45e9fe5b9f352d2c7202917ce6f715.mp3|Edinburgh is a dream-like place to visit.
+            dce18ab470d09fd2e7717f887f1556f8f307f915ff7a86b63f0971df50fc6f29ce7983c8459f1f01255a8d9a1480ef2695dcf1928797c086158454da20195d93.mp3|A tiny star appeared from nowhere.
+            dd6e3487c5b7c74bf673bbe348f8136fc5af84274036036f23eede4bb0737020a2e4db0fcb150b1165de58d4367131043f8c88767569c182f1b7cfcba3e6e565.mp3|"I'll make such a mess of things without you."
+            ddd334a3a76c07e839e11b93a60099236e5bfe13e67603116fb1eb129e14835aa7ed5d9c3fc10b80456254dcba770d9a45df725045b78d1d7b274ca7762fc71b.mp3|Have you got a ring?
+            de0eee4290f3bed8a8918e4e848569c59f12d7feb0b64ed21f29c6cd3614fce6d85b48b542f93069b72ffb2b6ea971bd7b522301c9ca2fbb7d0251e87baa71dc.mp3|"I'm just too miserable."
+            df28c341397b31d4b69e7f505ba01d3edb93c54af5f44f04a86b32b1dcccc0124e39a5b7637543fdcd75939d8c96a1d43437811a0f793520fc83266cc1f0c08c.mp3|Do you like cooking?
+            df83f60842b3cd33f36002a0885a17f3d1634727a147f6f1e85eb55ca1fa0640fa794da07bf50bf680c1e9685128834b7f05e844d5ec0443cc0c60e1ffb22040.mp3|"You're not asking a favor of him."
+            e18869ad66e089fa35596aaea0eb127e764dfc35a11b9627467f64682fcd79a0f3f957405995c7852ce16b657e4d70b0d323f0eaee7d22628648f9b6c613eedf.mp3|He was sitting next to the exit, facing the passengers.
+            e1bef669cad35446d51b81115b6ce75ac2173a4622460a58d9e32dcf9aaf203c605658442f4109a303ecccddf33350e85c3b7f3997175711a36a83c5f959c85d.mp3|The file he copied ended up in the trash can.
+            e2085656a2b1168049ed8f386603836351486e7bb74e4740fad53c3b65cbdd297643f799fa182c6ea4ca1094598500edb7f64d9f0bc35ac57eb2b6b0954704c0.mp3|It’s important that everyone, especially little guys, can participate in the future of the Internet
+            e22a74040d080a69a0d8493e60c7322c32b2069584983161017363fe687f908b5c295aa0b4cb67074931f0f924857ed74db66f3f8e2949e927bb1645bf61c606.mp3|I believe in you.
+            e28a0642ca8039694bcc4a0733288de9d24564c1d55193c5d477dba06555a24c148c135b94d24e1b7460cf4dfc4a3553a8461c054b06260ee10960cf173853ed.mp3|"C'mon over and join our party."
+            e350295810f3fd0ac5bc776a20557eb9e2f8eefef5042c4b4b9898c85d44ba82d969e8c2c27420b6c0bb952539f1e5fdd839f299a3bb474a7154b545a000e6bd.mp3|How much money do you get?
+            e3923292130d65bf0ac035c309d0f32830fcaa7cb40b7af43ef84b0fa50e1be506971271d6bf88d44751d93fc409eb1bb44cb967c6d81dd3345962636e141c02.mp3|Maybe it was yesterday.
+            e3be8778a179248b5f9bba4c1246ec606e14594aa6ad49d4eaf056244b8dbf02e914f6df5e85bd6bd2267145bb1d5277984d2ba143ede9760d34cda4a6cbd858.mp3|"I'll see you after."
+            e40de8bd04eb3ffc4cfdd77cbfd49227b64ebd9ef92c056e2eca51c5b5993aeebe96a17378ff8aed917b742b9ff22f14a67200b795cb21fa0c69a55d0d0baa60.mp3|Team 4 will meet up at point B with team 5.
+            e4d9a70d64010c82c07a2725669c9eeca76e71cf8a4f710ea137f61701db8211bbda06e37f373607845a10ea8a0d01e0e4edd59235daf1dbb0963cd8ca6cc864.mp3|I gotta figure some way out of this thing!
+            e53a601da6ba220bcd58bbc0a1cd136cf2f74edadc2b5ac0b7d1200c539185666f1b4d1df3aff7ed47479d60735f3980ec39ce3706b22c1a2ac5f93cc6bf3069.mp3|Diesel is the cheapest one, because of lower taxes.
+            e555e7a6473c97463752d6adec74fd909a6ecb9b634f6e54b4c5590f1044ad07dbc5cfab5a3b983eee029b0c3b4685558625c27c06041bd8fed3948141a318a0.mp3|There are plenty of guides available online that explain how to set this up.
+            e5f684a2c907811904b791a3256e4259d2f2ba307a7d49f958a1220ab99ab4fe146dc199c34e38c9c326166ab827266abd65873cece33617fd653209e8ca3db4.mp3|"I can't think any more."
+            e5fa4190cca28590911b950b9f68b76650d57cd3fc1939786d69e9d6ff9a47b618e4e287f797ba592a3fd7c5942002fef590a4863e0a9be23f04874c5e184a81.mp3|There was no response from the elders.
+            e60b44d35001187e1e1661d0a6b5d85bd5195465ac7dd552af7866cee11e5439c9290b3bfc57eea3ce8e2e00047bf93d07fa2992820f44d328065feea1fb0937.mp3|"That's why I'm quitting."
+            e69f45995b52899fd2edda902d5d12262aa90f705b88b77b7d74b224d02b0b3eee62ee2940f96a67a9bc4b176a904e48ea7e5bbfb62fce8cb768789711a6c484.mp3|I prefer pink toilets.
+            e6dc4ceeab4b0da37b753cf5b18eb62c076bee89780d91fc77be2c9b071cd79149cc742cfaa4083760c693ea1620b9f0fec802bc015371f30f224b8986f45546.mp3|"On the 3 o'clock train."
+            e7c65de68453bfcb1112cf07314c0068b0cef6c924506bd1ddb4b52dcc56c38e15de162751cc2c18053959f8f06ec81e1ca17536f3923422fd47a352cca0b88d.mp3|We beat the whole country on that story.
+            e7c6945782fe32ea475b0c9e060a6e93faeab3926add4f4df36eadac1ecfedbd4bbe7dd506be3cb1165b70a14bd3b0229e865384b34a88593c0341f0adbe103a.mp3|The cistern was malfunctioning.
+            ea744101600552bf2182faf7d9ad305563152087c78171311495be3340d6dd3bd05ab456ef7e81c012a8de81617a51e6c2e8b43e5160fbd54496fdb4d961fba8.mp3|Thank you very much.
+            eb0e4d9492e1a9841ad98a7443ced2b0ca5c35f426f49b7ab43062300f2fa190ede81307a2c75564530d6268420c13eb3c906a3f41b3181fa345d05652232c89.mp3|All of the resources were used up.
+            ebd41a606048223bf578647301044bbf5ee1a4e846cde9116b71e80449bc8193cebb69b38688c671f8effb46264a2e8ac587466bdf41330cffb03599a2a66136.mp3|"There isn't even a single reason for me to go to the lake today."
+            eca140f6028fea2f5b8e8dc9ff7e27a9e697eb957bfd23462197dd181b6b83435a43d5d625233c61dc9b8dfb55ba8683aa0dbc0535efe9ee089b2eec9b23db24.mp3|"I bet you she'd know how to say it all right."
+            ed8dfe148f6d15104824e996d7d5829e097597fe5d36b8a16d8599b56f1dc9ff0dcf5c3a65fb56ba5e1b67b2a1b25267087900fce0e9e395554bf9221635b29a.mp3|The European Union has often been criticized for their regulations.
+            edde1e066e3768979d6bb500acf0b4828a5e58d03a6f790ccfaf532bd8e223d847afdf1a2a5fb47f881802bf2ec41203c46f5ce45b02128ff630e30703147cf6.mp3|The tribe was almost eradicated.
+            eebb7ab82ae368cc3bac0414fd3d898df2a95f3981fb3badacd32e8c6d7fb567d67b5b26e2819c04c4d2ad30d78755eb956a0f44ea8990c929c1f9eb5a3a2bf7.mp3|"I'm leaving right now."
+            eee320209d85d2c0e16c06b039446f5ebc6659620e2521b218abe50a496ac9ed9b47bcef43c8b1e7e6916bc28488654b7993cbaeabd1b2ffe8a2ec90c5a71bb0.mp3|"You've got everything all set?"
+            eeefd0c82dd552366b75d80dce0dcb3c43d05e30a2e6176a71f9214b8b28cd1d87fbf8e097c23e5b7bfb4448892453e035259bce8aaf44bcc1e068bf30f28ae8.mp3|"While you're still champion!"
+            f100da472706a14c62f35674184a35f2f888735bb52acae7c81db31a194d18e5d414dd10ebf46251ceb627d7681ed41c5606a80c0d8711c48b75fc81c8b0f74b.mp3|An attempt to ruin us!
+            f225128a47aa933d9410f235a41e2754ab1d7eceb1bea8fe29dab59915100e80a6933bcf4256e11b9738b3cfaedb4e41ed0bb414cf9ff3616c036b8fa43ddd21.mp3|Better use heat resistant gloves when you take the bricks out of the furnace.
+            f27882fd0d6a8426522182af2d806888262fd025311480b8d32e113ede1ad0cf9ef4065b0130bd55db72d39c9c3cd9c0833fcc46c2f85e2e90f2c4892ae8ff56.mp3|"Do you mean the speech you're writing?"
+            f3b7d8766a96aa52a10116cdd7cddc924a5e4b2541fc2aa78db0a3b7fa4cffd0bbcb449e7362a5de93c673a3456f865e5f6af6caa97e48adfcc4720e2e39c189.mp3|My boyfriend caught two huge fish yesterday evening.
+            f4b40e0f3647401ee21c33797e6b304172a043e77809c5a77fc731f89be3b66397055d815038d3c55cee66c13f19a8b0ad8c07b82ad2bfd5d437e97d2d4b300c.mp3|"But don't let that out of your sight."
+            f4b6f48c261b3e89194e3aa4cd85aaf3fcd5ff9cd3821c10ca12757fa3901fad64e965bb5aabb3f1699abf8f58291a9ed35c84739f8582101cf57db00454ef70.mp3|Easy, just use any decent text editor.
+            f5192421ef07cf26f2ba5e09d71c807c9d65626fb0518a286c951943e32f89c82391dd5c3cfaedf7e0c9a8b6a215fdd4fece9ac10e0075bebe0329592ca2d741.mp3|And the last one?
+            f7ef8dd05596098692dee60f393cb8390fc732d90ce35950b9793f583e90a25010c09c9a0de76988b72789e39346cd93679d7f2ea63461a0180b05bfecd1dd8d.mp3|Plastic bags turned out to be a problem for the environment.
+            f8e62b6194fc09448cc0fd038b9eed2af261960a7d02e18467d0c8ba884932d64e89c9af850b8691c1e43af973ddfa87e7d8df93f3b2f3baaf05f1ba11f1ad3b.mp3|The idea is still good.
+            f9327f389582a80e3c19a96c7bb333994f3c517811881cc9daff3c033a2d1e43ed01b94cc82d9fbf3f0afb13abc47c6f81a5a092a810840c2ef8ebf3927af597.mp3|Did you get a doctor?
+            f9d865a369999b63513c1318623b87a4bc2d6f2af35f97180af9dabcebf538f058751d34774ee63a27ef49d3a2e4c0f4feb3f3020da398fe46ccce6bb85c3981.mp3|This drafty old barn!
+            fa9e695fc9792901c65b6caa6fe78209fa1cf3e9e446d2f1854bdd9301b66ad3ca910e348c8b070979f6fc6ce4c5d185236c18a76f8752f04ec54173eaf8ade7.mp3|Where have you been?
+            fd044ce67a7ab058ca38b1ae57ab47566df168bd6c0a4dac3b2dbf537b61cfa38e571f60c7a3a666cda1f7d303bf2e375251d51bcbf3305c046665f81100b6a1.mp3|About six months ago, I decided it was time to start using my voice environment at work.
+            fe9ac2f306331497d6af0a62d12eff5ef572654b83abf46efdfa2d8592452a542698e57171241926a5a060f1737542665a71b8ea760fe87ed35b80f61666380a.mp3|Not everyone is able to read source code.
+            fee560ab6b66fc383a2066d78a1f47e81071b501af9dcfd8a2e42945de7b19571774a4ccb2a342b7878eb2df7a38a556e94f19f83bd9a3d2de8e57b0d56353e6.mp3|"Sometimes I get so mad at you I can't see straight."
+            
+        </textarea><br>
+        <input type="button" id="convert_button" value="convert label to ipa"><br>
+
+        <label >Training Output</label><br>
+        <textarea id="train_textarea"  rows="20" cols="120"></textarea><br>
+        <label >Validate Output</label><br>
+        <textarea id="validate_textarea"  rows="20" cols="120"></textarea><br>
+    </div>
+   
+    
+    
+
+    <script type="module">
+        import { loadCmudict,textToArpa } from "../js-esm/cmudict_loader.js";
+        import { arpa_to_ipa } from "../js-esm/arpa_to_ipa.js";
+        import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+        env.allowLocalModels = true;
+        env.localModelPath = "../models/";
+        env.backends.onnx.logLevel = "fatal";
+
+        async function text2text_generation(words,convert_ipa=false) {
+        const generator = await pipeline('text2text-generation', 'mini-bart-g2p',{quantized: false});
+        const inputTexts = words;
+        const options = { max_new_tokens: 100 };
+        const outputs = await generator(inputTexts, options);
+
+        if (convert_ipa){
+            const ipas = []
+        outputs.forEach(output => {
+            const ipa = arpa_to_ipa(output.generated_text).replace(/\s/g, "")
+            ipas.push(ipa)
+            });
+            return ipas
+        }else{
+            return outputs  //arpa
+        }
+        
+    }
+
+    async function text2ipa(cmudict,text,replace_questions=false){
+        if (replace_questions){
+            text = text.replaceAll("!",".").replaceAll("?",".")
+        }
+        const cleanedString = text.replace(/[^a-zA-Z0-9.,!? ]/g, '');
+   
+    
+    const dict = textToArpa(cmudict,cleanedString)
+    const result = dict["result"]
+    //console.log(`textToArpa = from ${cleanedString} to ${result} length = ${result.length} result is array splited ,`)
+    const non_converted = dict["non_converted"]
+
+    let arpa_text = result.join("\t");
+
+    if (non_converted.length > 0){
+        //console.log("non_converted length = "+non_converted.length)
+       
+        const arpas = await text2text_generation(non_converted)
+       
+        for (let i = 0; i < non_converted.length; i++) {
+                const word = non_converted[i]
+                const arpa = arpas[i].generated_text
+                //console.log(`convert from ${word} to ${arpa}`)
+                arpa_text = arpa_text.replace("@"+word,arpa)
+            }
+    }
+
+    //TODO change , . is hard coding
+    //console.log(arpa_text)
+    arpa_text = arpa_text.replaceAll(",","\t,").replaceAll(".","\t.").replaceAll("?","\t?").replaceAll("!","\t!")
+    
+    const words = arpa_text.split("\t")
+    const ipa_texts = []
+    words.forEach(function(word){
+        //console.log(`'${word}'`)
+        if (word == "" || word == " "){
+            return
+        }
+        if (word == "." || word ==","|| word =="!"|| word =="?"){
+            
+            ipa_texts.push(word)
+        }else{
+            const ipa_text = arpa_to_ipa(word)
+            ipa_texts.push(ipa_text)
+            ipa_texts.push(" ") //word separator
+        }
+       
+    });
+
+    return ipa_texts.join("").replaceAll(" .",".").replaceAll(" ,",",").replaceAll(" ?","?").replaceAll(" !","!")
+}
+
+    async function main(){
+        let cmudict ={}
+        let cmudictReady = loadCmudict(cmudict,'../dictionaries/cmudict-0.7b')
+        await cmudictReady
+        //console.log(cmudict)
+        const input_text = document.getElementById('input_textarea').value
+        const lines = input_text.split("\n")
+        const separator = document.getElementById('input_separator').value
+        const audio_dir = document.getElementById('input_audio_dir').value
+        
+        
+        const outputs =[]
+        for(let i=0;i<lines.length;i++){
+            const line =lines[i].trim()
+            if(line ==""){
+                continue
+            }
+            
+                    const path_label = line.split(separator)
+                    //console.log(path_label)
+                    const ipa = await text2ipa(cmudict,path_label[1])
+                    const converted_line = `${audio_dir}${path_label[0].replace(".mp3",".wav")}|${ipa}`
+                    //console.log(converted_line)
+                    outputs.push(converted_line)
+            };
+
+        const separate_index = Math.floor(outputs.length*0.8)
+        console.log(separate_index)
+        const train_datas = outputs.slice(0,separate_index)
+        const validate_datas = outputs.slice(separate_index)
+        document.getElementById('train_textarea').value = train_datas.join("\n")
+        document.getElementById('validate_textarea').value = validate_datas.join("\n")
+        //const test = text2ipa(cmudict,"hello huggingface")
+        //console.log(test)
+    }
+
+
+    document.getElementById('convert_button').onclick = main;
+        
+    
+    </script>
+</body>
+</html>

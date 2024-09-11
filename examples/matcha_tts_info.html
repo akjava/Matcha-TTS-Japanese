@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matcha TTS Model Info(Local)</title>
+</head>
+<body>
+    <h1>Matcha TTS Model Info(Local)</h1>
+    <div>this example using Quantized version(lowquality and slow) because of Github Page 100MB limitation</div>
+    <div id="result"></div>
+    
+   
+    
+    <script src="./js-esm/ort.min.js" ></script>
+    
+    <script type="module">
+        //trying full local access,If you seee file not found error get ,set file url and get from https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/
+        //must be absolute path
+        ort.env.wasm.wasmPaths = "/English-To-IPA-Collections/js-esm/"
+        import { MatchaTTSRaw } from "./js-esm/matcha_tts_raw.js";
+        let matcha_onnx
+        async function main() {
+            console.log("main called")
+            if(!matcha_onnx){
+                matcha_onnx = new MatchaTTSRaw()
+                console.time("load model");
+                await matcha_onnx.load_model('./models/matcha-tts/ljspeech_sim_q8.onnx',{ executionProviders: ['wasm'] ,interOpNumThreads:1,intraOpNumThreads:1});
+                
+                console.timeEnd("load model");
+            }else{
+                console.log("session exist skip load model")
+            }
+            document.getElementById('result').innerHTML = matcha_onnx.get_input_names_html()　+""+ matcha_onnx.get_output_names_html();
+        }
+
+
+        window.onload = async function(){
+            console.log(ort)
+            main()
+        }
+        
+    
+    </script>
+       <div id="footer">
+        <a href="https://github.com/shivammehta25/Matcha-TTS" style="font-size: 9px" target="link">Matcha TTS</a> | 
+        <a href = "http://www.udialogue.org/download/cstr-vctk-corpus.html" style="font-size: 9px"  target="link">CSTR VCTK Corpus</a> |
+        <a href = "https://github.com/cmusphinx/cmudict" style="font-size: 9px"  target="link">CMUDict</a> |
+        <a href = "https://huggingface.co/docs/transformers.js/index" style="font-size: 9px"  target="link">Transformer.js</a> |
+        <a href = "https://huggingface.co/cisco-ai/mini-bart-g2p" style="font-size: 9px"  target="link">mini-bart-g2p</a> |
+        <a href = "https://onnxruntime.ai/docs/get-started/with-javascript/web.html" style="font-size: 9px"  target="link">ONNXRuntime-Web</a> |
+        <a href = "https://github.com/akjava/English-To-IPA-Collections" style="font-size: 9px"  target="link">English-To-IPA-Collections</a> 
+        </div>
+</body>
+</html>
