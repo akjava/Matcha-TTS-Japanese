@@ -5,19 +5,20 @@
     <body>
         <h1>Matcha-TTS-Japanese Examples</h1>
         <div>some demos use onnx and possible error on your platforms</div>
-        <br>
-
+    
         <h2>Basic Examples</h2>
         
         <a href="matcha_tts_info.html">Match-TTS-ModelInfo</a> - Just print Onnx input and output Info and Local only Onnx<br>
         
-        <br>
+    
 
         <h2>English Examples</h2>
         <p>phonemizer is different,but the model with official one would works well</p>
-        <a href="matcha_tts_speak_gpu.html">Matcha-TTS VCTK 109 voices Speak(GPU)</a> -  faster GPU Version(but quantized slow than huggingface version) <br>
-        <a href="matcha_tts_speak.html">Matcha-TTS VCTK 109 voices Speak(CPU)</a> -  try this if gpu error,slow cpu version(quantizing make more slow)<br>
-        <a href="matcha_tts_speak_ljspeech.html">Matcha-TTS LJSpeech single voice Speak(GPU)</a> -  best single speaker GPU Version(but quantized slow than huggingface version) <br>
+        <p>Even Using GPU quantized model are 3-5 time slow than huggingface models</p>
+        <a href="matcha_tts_speak_gpu.html">Matcha-TTS VCTK 109 voices Speak(GPU)</a> -  faster GPU Version<br>
+        <a href="matcha_tts_speak.html">Matcha-TTS VCTK 109 voices Speak(CPU)</a> -  try this if gpu error,slow cpu version<br>
+        <a href="matcha_tts_speak_ljspeech.html">Matcha-TTS LJSpeech single voice Speak(GPU)</a> -  best single speaker GPU Version <br>
+        <a href="matcha_tts_speak_en001.html">Matcha-TTS En001 single voice Speak(GPU)</a> -  My trained model from CommonVoice dataset with ljspeech pretrained<br>
         
         <h2>Other related Examples</h2>
         <a href="https://akjava.github.io/English-To-IPA-Collections/">Convert Cmudict to IPA</a> - create cumdict-ipa_simplified_vowel-aligned.tsv<br>
