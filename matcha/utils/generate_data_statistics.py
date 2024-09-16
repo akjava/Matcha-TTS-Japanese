@@ -124,7 +124,7 @@ def main():
     data_loader = text_mel_datamodule.train_dataloader()
     log.info("Dataloader loaded! Now computing stats...")
     
-    if not os.getcwd().endswith("Matcha-TTS"):
+    if not os.getcwd().endswith("Matcha-TTS-Japanese"):
         print(f"#### WARNING NOT IN MATCHA current workind dir = {os.getcwd()}####")
     
     params = compute_data_statistics(data_loader, cfg["n_feats"])
