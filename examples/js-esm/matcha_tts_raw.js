@@ -117,9 +117,9 @@ async infer(text, temperature, speed,spks=0) {
         console.error("already processing")
         return null
     }
-    this.processing = true
+    
     try{
-
+        this.processing = true; // try ブロック内で設定
 
     const dic = this.processText(text);
 console.log(`x:${dic.x.join(", ")}`);
@@ -163,11 +163,12 @@ const output = await this.session.run(send_data);
 const wav_array = output.wav.data;
 const x_lengths_array = output.wav_lengths.data;
 
-this.processing = false
 return wav_array;
     }catch (exception){
-        this.processing = false
+        console.error("Inference error:", exception);
         return null
+    }finally{
+        this.processing = false;
     }
 }
 
