@@ -119,6 +119,7 @@ async infer(text, temperature, speed,spks=0) {
     }
     
     try{
+        console.log("set processing True")
         this.processing = true; // try ブロック内で設定
 
     const dic = this.processText(text);
@@ -168,6 +169,7 @@ return wav_array;
         console.error("Inference error:", exception);
         return null
     }finally{
+        console.log("set processing False")
         this.processing = false;
     }
 }
