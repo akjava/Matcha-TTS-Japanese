@@ -13,7 +13,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
         let matcha_tts_raw;
         let cmudict ={};
         let speaking = false;
-        async function matcha_tts(model_path,text,speed=1.0,tempature=0.5,spk=0) {
+        async function matcha_tts(text,model_path,force_load_model=false,speed=1.0,tempature=0.5,spk=0) {
 
             if( model_path == null){
                 //maybe need change to model page
@@ -24,8 +24,10 @@ import { env,textToArpa} from "./text_to_arpa.js";
                 console.log("speaking return")
             }
             speaking = true
-            if(!matcha_tts_raw){
+            
+            if(!matcha_tts_raw || force_load_model){
                 matcha_tts_raw = new MatchaTTSRaw()
+                matcha_tts_raw.matcha_tts_debug = env.matcha_tts_debug
                 await matcha_tts_raw.load_model(model_path,{ executionProviders: ['webgpu','wasm'] });
                 let cmudictReady = loadCmudict(cmudict,env.cmudictPath)
                 await cmudictReady
@@ -37,7 +39,10 @@ import { env,textToArpa} from "./text_to_arpa.js";
            
             const arpa_text = await textToArpa(cmudict,text)
             const ipa_text = arpa_to_ipa(arpa_text).replace(/\s/g, "");
-            console.log(ipa_text)
+            if (env.matcha_tts_debug){
+                console.log(ipa_text)
+            }
+            
             const spks = 0
             
             const result = await matcha_tts_raw.infer(ipa_text, tempature, speed,spks);

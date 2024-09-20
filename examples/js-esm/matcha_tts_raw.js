@@ -21,12 +21,18 @@ class MatchaTTSRaw {
     constructor() {
         this.processing = false
     }
+    debug(text){
+        if (this.matcha_tts_debug){
+            console.log(text)
+        }
+    }
     async load_model(model_path,options={}){
         this.session = await ort.InferenceSession.create(model_path,options);
-        console.log(this.session)
+        
+        debug(this.session)
         const inputNames = this.session.inputNames;
         this.need_spks = inputNames.includes("spks")
-        console.log(`this model need spks = ${this.need_spks}`);
+        debug(`this model need spks = ${this.need_spks}`);
         return this.session
     }
 
@@ -37,7 +43,7 @@ class MatchaTTSRaw {
         let outputNamesString = '[outputNames]<br>';
         const outputNames = this.session.outputNames;
         for (let outputName of outputNames) {
-            console.log(outputName)
+            debug(outputName)
             outputNamesString+=outputName+"<br>"
         }
         return outputNamesString.trim()
@@ -52,7 +58,7 @@ class MatchaTTSRaw {
         const inputNames = this.session.inputNames;
 
         for (let inputName of inputNames) {
-            console.log(inputName)
+            debug(inputName)
             inputNamesString+=inputName+"<br>"
         }
         return inputNamesString.trim()
@@ -119,14 +125,14 @@ async infer(text, temperature, speed,spks=0) {
     }
     
     try{
-        console.log("set processing True")
+        debug("set processing True")
         this.processing = true; // try ブロック内で設定
 
     const dic = this.processText(text);
-console.log(`x:${dic.x.join(", ")}`);
-console.log(`x_length:${dic.x_length}`);
-console.log(`x_phones_label:${dic.x_phones_label}`);
-console.log(`temperature=${temperature} speed = ${speed} spks=${spks}`);
+    debug(`x:${dic.x.join(", ")}`);
+    debug(`x_length:${dic.x_length}`);
+    debug(`x_phones_label:${dic.x_phones_label}`);
+    debug(`temperature=${temperature} speed = ${speed} spks=${spks}`);
     
 
 const dataX = new BigInt64Array(dic.x.length)
