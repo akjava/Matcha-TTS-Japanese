@@ -160,7 +160,7 @@ const vowels = {
   // Function to convert Arpabet to IPA
   function arpa_to_ipa(arpa_text,accent_mode=AccentMode.SIMPLIFIED_VOWEL_ALIGNED) {
     arpa_text = arpa_text.replaceAll(",","\t,\t").replaceAll(".","\t.\t").replaceAll("?","\t?\t").replaceAll("!","\t!\t")
-    console.log(arpa_text)
+    //console.log(arpa_text)
     const words = arpa_text.split("\t")
     const ipa_texts = []
     words.forEach(function(word){

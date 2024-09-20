@@ -176,7 +176,7 @@ return wav_array;
         console.error("Inference error:", exception);
         return null
     }finally{
-        console.log("set processing False")
+        this.debug("set processing False")
         this.processing = false;
     }
 }
