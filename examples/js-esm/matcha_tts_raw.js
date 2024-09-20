@@ -29,7 +29,7 @@ class MatchaTTSRaw {
     async load_model(model_path,options={}){
         this.session = await ort.InferenceSession.create(model_path,options);
         
-        debug(this.session)
+        this.debug(this.session)
         const inputNames = this.session.inputNames;
         this.need_spks = inputNames.includes("spks")
         debug(`this model need spks = ${this.need_spks}`);
