@@ -38,9 +38,9 @@ async function textToArpa(cmudict,text,replace_questions=false){
 
     //console.log(non_converted.length)
     if (non_converted.length > 0){
-        console.log("non_converted length = "+non_converted.length)
+        //console.log("non_converted length = "+non_converted.length)
         const arpas = await text2text_generation(non_converted)
-        console.log(arpas)
+        //console.log(arpas)
         for (let i = 0; i < non_converted.length; i++) {
                 const word = non_converted[i]
                 const arpa = arpas[i].generated_text
