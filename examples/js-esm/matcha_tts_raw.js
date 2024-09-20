@@ -125,7 +125,7 @@ async infer(text, temperature, speed,spks=0) {
     }
     
     try{
-        debug("set processing True")
+        this.debug("set processing True")
         this.processing = true; // try ブロック内で設定
 
     const dic = this.processText(text);
