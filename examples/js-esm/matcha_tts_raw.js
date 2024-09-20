@@ -21,6 +21,7 @@ class MatchaTTSRaw {
     constructor() {
         this.processing = false
     }
+
     debug(text){
         if (this.matcha_tts_debug){
             console.log(text)
@@ -32,7 +33,7 @@ class MatchaTTSRaw {
         this.debug(this.session)
         const inputNames = this.session.inputNames;
         this.need_spks = inputNames.includes("spks")
-        debug(`this model need spks = ${this.need_spks}`);
+        this.debug(`this model need spks = ${this.need_spks}`);
         return this.session
     }
 
@@ -43,7 +44,7 @@ class MatchaTTSRaw {
         let outputNamesString = '[outputNames]<br>';
         const outputNames = this.session.outputNames;
         for (let outputName of outputNames) {
-            debug(outputName)
+            this.debug(outputName)
             outputNamesString+=outputName+"<br>"
         }
         return outputNamesString.trim()
@@ -58,7 +59,7 @@ class MatchaTTSRaw {
         const inputNames = this.session.inputNames;
 
         for (let inputName of inputNames) {
-            debug(inputName)
+            this.debug(inputName)
             inputNamesString+=inputName+"<br>"
         }
         return inputNamesString.trim()
@@ -129,10 +130,10 @@ async infer(text, temperature, speed,spks=0) {
         this.processing = true; // try ブロック内で設定
 
     const dic = this.processText(text);
-    debug(`x:${dic.x.join(", ")}`);
-    debug(`x_length:${dic.x_length}`);
-    debug(`x_phones_label:${dic.x_phones_label}`);
-    debug(`temperature=${temperature} speed = ${speed} spks=${spks}`);
+    this.debug(`x:${dic.x.join(", ")}`);
+    this.debug(`x_length:${dic.x_length}`);
+    this.debug(`x_phones_label:${dic.x_phones_label}`);
+    this.debug(`temperature=${temperature} speed = ${speed} spks=${spks}`);
     
 
 const dataX = new BigInt64Array(dic.x.length)
