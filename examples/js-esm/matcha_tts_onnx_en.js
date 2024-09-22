@@ -3,7 +3,7 @@ import { webWavPlay } from "./web_wav_play.js";
 import { arpa_to_ipa } from "./arpa_to_ipa.js";
 import { loadCmudict } from "./cmudict_loader.js";
 import { env,textToArpa} from "./text_to_arpa.js";
-        
+        console.log("MatchaTTS onnx en Dev 0.2,if you are not developer.use stable version")
         env.allowLocalModels = true;
         //for transfomer.js bart-g2p
         env.localModelPath = "https://akjava.github.io/Matcha-TTS-Japanese/models/";
