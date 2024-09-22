@@ -14,6 +14,10 @@ import { env,textToArpa} from "./text_to_arpa.js";
         let cmudict ={};
         let speaking = false;
         async function matcha_tts(text,model_path,force_load_model=false,speed=1.0,tempature=0.5,spk=0) {
+            
+            if (is_start_thread_play_tts == false){
+                start_thread_play_tts()
+            } 
 
             if( model_path == null){
                 //maybe need change to model page
@@ -57,6 +61,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
 
         const matcha_results = []
         const interval = 10
+        let is_start_thread_play_tts = false
         async function start_thread_play_tts() {
             if (matcha_results.length>0){
                 console.log(matcha_results.length)
@@ -65,7 +70,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
             }
             setTimeout(start_multi_line_tts, interval);    
         }
-        start_thread_play_tts()
+        
 
 
         export{matcha_tts,env,cmudict}
