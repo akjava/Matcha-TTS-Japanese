@@ -71,7 +71,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
                 console.log(result)
                 await webWavPlayBlob(result)
             }
-            setTimeout(start_multi_line_tts, interval);    
+            setTimeout(start_thread_play_tts, interval);    
         }
         
 
