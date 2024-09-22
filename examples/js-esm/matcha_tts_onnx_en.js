@@ -76,4 +76,4 @@ import { env,textToArpa} from "./text_to_arpa.js";
         
 
 
-        export{matcha_tts,env,cmudict,start_thread_play_tts}
+        export{matcha_tts,matcha_tts_raw,env,cmudict,start_thread_play_tts}
