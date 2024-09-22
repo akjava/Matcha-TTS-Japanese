@@ -1,11 +1,23 @@
 
 
-async function webWavPlay(f32array){
+function webWavConvertBlob(f32array){
     const blob = float32ArrayToWav(f32array)
-    const url = createObjectUrlFromBlob(blob)
-    await playAudioFromUrl(url)
     return blob
 }
+
+async function webWavPlay(f32array){
+  const blob = float32ArrayToWav(f32array)
+  const url = createObjectUrlFromBlob(blob)
+  await playAudioFromUrl(url)
+  return blob
+}
+
+async function webWavPlayBlob(blob){
+  const url = createObjectUrlFromBlob(blob)
+  await playAudioFromUrl(url)
+  return blob
+}
+
 
 function createObjectUrlFromBlob(blob) {
     const url = URL.createObjectURL(blob);
@@ -78,4 +90,4 @@ function float32ArrayToWav(floatSamples, sampleRate=22050) {
         return new Blob([view], {type: 'audio/wav'});
       }
 
-      export { webWavPlay };
+      export { webWavPlay ,webWavConvertBlob,webWavPlayBlob};

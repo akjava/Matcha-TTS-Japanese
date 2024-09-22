@@ -1,5 +1,5 @@
 import { MatchaTTSRaw } from "./matcha_tts_raw.js";
-import { webWavPlay } from "./web_wav_play.js";
+import { webWavPlay ,webWavConvertBlob,webWavPlayBlob} from "./web_wav_play.js";
 import { arpa_to_ipa } from "./arpa_to_ipa.js";
 import { loadCmudict } from "./cmudict_loader.js";
 import { env,textToArpa} from "./text_to_arpa.js";
@@ -47,21 +47,14 @@ import { env,textToArpa} from "./text_to_arpa.js";
             
             const spks = 0
             
-            let inferResult=null;
+            let wav_audio;
 
-            await matcha_tts_raw.infer(ipa_text, tempature, speed,spks)
-            .then((result) => {
-                if (result != null) {
-                    inferResult = result;
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+            const result = await matcha_tts_raw.infer(ipa_text, tempature, speed,spks)
             
-
-            if (inferResult!=null){
-                matcha_results.push(inferResult)
+            //
+            if (result!=null){
+                const wav_audio_blob = webWavConvertBlob(result)
+                matcha_results.push(wav_audio_blob)
             }
     
             speaking = false
@@ -76,7 +69,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
                 console.log(matcha_results.length)
                 const result = matcha_results.pop()
                 console.log(result)
-                //await webWavPlay(result)
+                await webWavPlayBlob(result)
             }
             setTimeout(start_multi_line_tts, interval);    
         }
