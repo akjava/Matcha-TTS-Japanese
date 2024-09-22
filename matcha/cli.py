@@ -379,7 +379,7 @@ def batched_synthesis(args, device, model, vocoder, denoiser, texts, spk,save_ex
         total_rtf.append(output["rtf"])
         total_rtf_w.append(rtf_w)
         for j in range(output["mel"].shape[0]):
-            base_name = f"utterance_{j:04d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{j:0d}"
+            base_name = f"utterance_{j:04d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{j:04d}"
             length = output["mel_lengths"][j]
             new_dict = {"mel": output["mel"][j][:, :length], "waveform": output["waveform"][j][: length * 256]}
             location = save_to_folder(base_name, new_dict, args.output_folder,save_extra)
@@ -396,7 +396,7 @@ def unbatched_synthesis(args, device, model, vocoder, denoiser, texts, spk,save_
     total_rtf_w = []
     for i, text in enumerate(texts):
         i = i + 1
-        base_name = f"utterance_{i:03d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{i:03d}"
+        base_name = f"utterance_{i:04d}_speaker_{args.spk:03d}" if args.spk is not None else f"utterance_{i:04d}"
 
         print("".join(["="] * 100))
         text = text.strip()
