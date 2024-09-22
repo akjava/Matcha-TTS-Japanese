@@ -65,6 +65,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
             }
             setTimeout(start_multi_line_tts, interval);    
         }
-        
+        start_thread_play_tts()
+
 
         export{matcha_tts,env,cmudict}
