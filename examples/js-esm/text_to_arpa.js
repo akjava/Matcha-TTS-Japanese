@@ -44,7 +44,7 @@ async function textToArpa(cmudict,text,replace_questions=false){
         for (let i = 0; i < non_converted.length; i++) {
                 const word = non_converted[i]
                 const arpa = arpas[i].generated_text
-                console.log("@"+word,arpa)
+                //console.log("@"+word,arpa)
                 arpa_text = arpa_text.replace("@"+word,arpa)
             }
     }
