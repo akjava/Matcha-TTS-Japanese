@@ -47,9 +47,9 @@ import { env,textToArpa} from "./text_to_arpa.js";
             
             const spks = 0
             
-            let inferResult;
+            let inferResult=null;
 
-            matcha_tts_raw.infer(ipa_text, tempature, speed,spks)
+            await matcha_tts_raw.infer(ipa_text, tempature, speed,spks)
             .then((result) => {
                 if (result != null) {
                     inferResult = result;
@@ -59,7 +59,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
                 console.error('Error:', error);
             });
             
-            
+
             if (inferResult!=null){
                 matcha_results.push(inferResult)
             }
