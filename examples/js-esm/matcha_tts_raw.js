@@ -120,6 +120,11 @@ class MatchaTTSRaw {
 }
 
 async infer(text, temperature, speed,spks=0) {
+    if (typeof this.session=='undefined'){
+        console.log("infer called but session is undefined.need load model first or faild load")
+        return null
+    }
+
     if(this.processing){
         console.error("already processing")
         return null
