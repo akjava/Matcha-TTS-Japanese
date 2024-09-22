@@ -29,7 +29,7 @@ async function playAudioFromUrl(url) {
       
       return new Promise((resolve, reject) => {
           audio.addEventListener('ended', () => {
-              console.log('Audio playback has ended');
+              //console.log('Audio playback has ended');
               resolve(); // End Play
           });
   
