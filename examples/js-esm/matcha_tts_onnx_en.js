@@ -47,9 +47,11 @@ import { env,textToArpa} from "./text_to_arpa.js";
             
             const result = await matcha_tts_raw.infer(ipa_text, tempature, speed,spks);
             
+            //
             if (result!=null){
-                webWavPlay(result)
-               
+                console.log("start audio")
+                await webWavPlay(result)
+                console.log("end audio")
             }
     
             speaking = false

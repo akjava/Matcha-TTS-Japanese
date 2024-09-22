@@ -1,9 +1,9 @@
 
 
-function webWavPlay(f32array){
+async function webWavPlay(f32array){
     const blob = float32ArrayToWav(f32array)
     const url = createObjectUrlFromBlob(blob)
-    playAudioFromUrl(url)
+    await playAudioFromUrl(url)
     return blob
 }
 
@@ -12,10 +12,23 @@ function createObjectUrlFromBlob(blob) {
     return url;
     }
 
-function playAudioFromUrl(url) {
-    const audio = new Audio(url);
-    audio.play().catch(error => console.error('Failed to play audio:', error));
-    }
+async function playAudioFromUrl(url) {
+      const audio = new Audio(url);
+      
+      return new Promise((resolve, reject) => {
+          audio.addEventListener('ended', () => {
+              console.log('Audio playback has ended');
+              resolve(); // End Play
+          });
+  
+          audio.addEventListener('error', (error) => {
+              console.error('Failed to play audio:', error);
+              reject(error); // Error 
+          });
+  
+          audio.play().catch(reject);
+      });
+  }
 
     
 //I copied
