@@ -61,7 +61,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
         }
 
         const matcha_results = []   //TODO support clear results
-        const interval = 100
+        const interval = 10
         
         async function start_thread_play_tts() {
             //console.log("start_thread_play_tts")
@@ -76,4 +76,4 @@ import { env,textToArpa} from "./text_to_arpa.js";
         
 
 
-        export{matcha_tts,matcha_tts_raw,env,cmudict,start_thread_play_tts}
+        export{matcha_tts,env,cmudict,start_thread_play_tts}
