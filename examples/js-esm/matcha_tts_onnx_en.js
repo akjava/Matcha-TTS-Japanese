@@ -64,10 +64,10 @@ import { env,textToArpa} from "./text_to_arpa.js";
         const interval = 100
         
         async function start_thread_play_tts() {
-            console.log("start_thread_play_tts")
+            //console.log("start_thread_play_tts")
             if (matcha_results.length>0){
                 console.log(matcha_results.length)
-                const result = matcha_results.pop()
+                const result = matcha_results.shift()
                 console.log(result)
                 await webWavPlayBlob(result)
             }
