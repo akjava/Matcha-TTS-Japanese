@@ -49,12 +49,22 @@ import { env,textToArpa} from "./text_to_arpa.js";
             
             //
             if (result!=null){
-                console.log("start audio")
-                await webWavPlay(result)
-                console.log("end audio")
+                matcha_results.push(result)
             }
     
             speaking = false
         }
+
+        const matcha_results = []
+        const interval = 10
+        async function start_thread_play_tts() {
+            if (matcha_results.length>0){
+                console.log(matcha_results.length)
+                const result = matcha_results.pop()
+                await webWavPlay(result)
+            }
+            setTimeout(start_multi_line_tts, interval);    
+        }
+        
 
         export{matcha_tts,env,cmudict}
