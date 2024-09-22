@@ -47,11 +47,21 @@ import { env,textToArpa} from "./text_to_arpa.js";
             
             const spks = 0
             
-            const result = await matcha_tts_raw.infer(ipa_text, tempature, speed,spks);
+            let inferResult;
+
+            matcha_tts_raw.infer(ipa_text, tempature, speed,spks)
+            .then((result) => {
+                if (result != null) {
+                    inferResult = result;
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
             
-            //
-            if (result!=null){
-                matcha_results.push(result)
+            
+            if (inferResult!=null){
+                matcha_results.push(inferResult)
             }
     
             speaking = false
@@ -66,7 +76,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
                 console.log(matcha_results.length)
                 const result = matcha_results.pop()
                 console.log(result)
-                await webWavPlay(result)
+                //await webWavPlay(result)
             }
             setTimeout(start_multi_line_tts, interval);    
         }
