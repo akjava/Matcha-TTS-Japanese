@@ -14,7 +14,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
         let cmudict ={};
         let speaking = false;
         async function matcha_tts(text,model_path,force_load_model=false,speed=1.0,tempature=0.5,spk=0) {
-            console.log(text+","+structuredClone(speaking))
+            //console.log(text+","+structuredClone(speaking))
             if( model_path == null){
                 //maybe need change to model page
                 model_path = "https://akjava.github.io/Matcha-TTS-Japanese/models/matcha-tts/ljspeech_sim_q8.onnx"
@@ -29,7 +29,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
                 matcha_tts_raw = new MatchaTTSRaw()
                 matcha_tts_raw.matcha_tts_debug = env.matcha_tts_debug
                 await matcha_tts_raw.load_model(model_path,{ executionProviders: ['webgpu','wasm'] });
-                console.log(matcha_tts_raw.session)
+                //console.log(matcha_tts_raw.session)
                 console.log("matcha-model loaded:"+model_path)
                 let cmudictReady = loadCmudict(cmudict,env.cmudictPath)
                 await cmudictReady
@@ -66,9 +66,9 @@ import { env,textToArpa} from "./text_to_arpa.js";
         async function start_thread_play_tts() {
             //console.log("start_thread_play_tts")
             if (matcha_results.length>0){
-                console.log(matcha_results.length)
+                //console.log(matcha_results.length)
                 const result = matcha_results.shift()
-                console.log(result)
+                //console.log(result)
                 await webWavPlayBlob(result)
             }
             setTimeout(start_thread_play_tts, interval);    
