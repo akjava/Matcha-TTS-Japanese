@@ -69,7 +69,8 @@ import { env,textToArpa} from "./text_to_arpa.js";
             if (matcha_results.length>0){
                 console.log(matcha_results.length)
                 const result = matcha_results.pop()
-                await webWavPlay(result)
+                console.log(result)
+                //await webWavPlay(result)
             }
             setTimeout(start_multi_line_tts, interval);    
         }
