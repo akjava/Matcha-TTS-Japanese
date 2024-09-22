@@ -14,7 +14,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
         let cmudict ={};
         let speaking = false;
         async function matcha_tts(text,model_path,force_load_model=false,speed=1.0,tempature=0.5,spk=0) {
-            
+            console.log(text+","+structuredClone(speaking))
             if( model_path == null){
                 //maybe need change to model page
                 model_path = "https://akjava.github.io/Matcha-TTS-Japanese/models/matcha-tts/ljspeech_sim_q8.onnx"
