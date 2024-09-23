@@ -26,11 +26,13 @@ import { env,textToArpa} from "./text_to_arpa.js";
             speaking = true
             
             if(!matcha_tts_raw || force_load_model){
+                const start = performance.now();
                 matcha_tts_raw = new MatchaTTSRaw()
                 matcha_tts_raw.matcha_tts_debug = env.matcha_tts_debug
                 await matcha_tts_raw.load_model(model_path,{ executionProviders: ['webgpu','wasm'] });
                 //console.log(matcha_tts_raw.session)
-                console.log("matcha-model loaded:"+model_path)
+                const load_time = (start-performance.now())/1000;
+                console.log("matcha-model loaded:"+model_path+" "+load_time.toFixed(2)+" sec")
                 let cmudictReady = loadCmudict(cmudict,env.cmudictPath)
                 await cmudictReady
             }else{
