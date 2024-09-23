@@ -31,7 +31,7 @@ import { env,textToArpa} from "./text_to_arpa.js";
                 matcha_tts_raw.matcha_tts_debug = env.matcha_tts_debug
                 await matcha_tts_raw.load_model(model_path,{ executionProviders: ['webgpu','wasm'] });
                 //console.log(matcha_tts_raw.session)
-                const load_time = (start-performance.now())/1000;
+                const load_time = (performance.now()-start)/1000;
                 console.log("matcha-model loaded:"+model_path+" "+load_time.toFixed(2)+" sec")
                 let cmudictReady = loadCmudict(cmudict,env.cmudictPath)
                 await cmudictReady
