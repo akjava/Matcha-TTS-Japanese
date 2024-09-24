@@ -4,8 +4,7 @@ import { arpa_to_ipa } from "./arpa_to_ipa.js";
 import { loadCmudict } from "./cmudict_loader.js";
 import { env as text_to_arpa_env,textToArpa} from "./text_to_arpa.js";
        
-        //console.log("MatchaTTS-en onnx 02 - https://github.com/akjava/Matcha-TTS-Japanese/tree/main/examples/js-esm")
-        console.log("MatchaTTS onnx en Dev 0.3,if you are not developer.use stable version")
+        console.log("MatchaTTS-en onnx 02 - https://github.com/akjava/Matcha-TTS-Japanese/tree/main/examples/js-esm")
 
         text_to_arpa_env.allowLocalModels = true;
         //for transfomer.js bart-g2p
