@@ -16,3 +16,5 @@ v00x-xxxxxxxx are released version and use that.
 ## Probrlems
 - sometime crash (maybe audio too big?) - v2 limit size soso fix this problem
 - storm of onnx log - transfoerm.js make them,in future there upgrade will fix that
+## how this work
+![flow chart](imgs/mecanic.png)
