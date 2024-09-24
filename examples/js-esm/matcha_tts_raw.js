@@ -17,13 +17,17 @@ symbolToId[Symbols[i]] = i;
 idToSymbol[i] = Symbols[i];
 }
 
+const env = {}
+env.maxInputLength = 140 //I'm not sure exactly limit size and maybe depend on user's gpu.
+env.debug = false
+
 class MatchaTTSRaw {
     constructor() {
         this.processing = false
     }
 
     debug(text){
-        if (this.matcha_tts_debug){
+        if (env.debug){
             console.log(text)
         }
     }
@@ -66,55 +70,64 @@ class MatchaTTSRaw {
     }
 
 
-    processText(text) {
+    processText(input_text) {
+    let text = input_text
+    const text_length = text.length
+    if (text_length > env.maxInputLength) {
+        text = text.substring(0, env.maxInputLength);
+        console.log(`input-length ${text_length} is over ${env.maxInputLength}.substringthed to ${text} `)
+        console.log("if still audio broken reduce maxInputLength")
+        }
+
+   
     const x = this.intersperse(this.textToSequence(text));
     const x_phones = this.sequenceToText(x);
     const textList = [];
     for (let i = 1; i < x_phones.length; i += 2) {
-    textList.push(x_phones[i]);
+        textList.push(x_phones[i]);
     }
 
     return {
-    x: x,
-    x_length: x.length,
-    x_phones: x_phones,
-    x_phones_label: textList.join(""),
+        x: x,
+        x_length: x.length,
+        x_phones: x_phones,
+        x_phones_label: textList.join(""),
     };
 }
 
 
     basicCleaners2(text, lowercase = false) {
-    if (lowercase) {
-    text = text.toLowerCase();
-    }
-    text = text.replace(/\s+/g, " ");
-    return text;
+        if (lowercase) {
+            text = text.toLowerCase();
+        }
+        text = text.replace(/\s+/g, " ");
+        return text;
 }
 
     textToSequence(text) {
-    const sequenceList = [];
-    const clean_text = this.basicCleaners2(text);
-    for (let i = 0; i < clean_text.length; i++) {
-    const symbol = clean_text[i];
-    sequenceList.push(symbolToId[symbol]);
-    }
-    return sequenceList;
+        const sequenceList = [];
+        const clean_text = this.basicCleaners2(text);
+        for (let i = 0; i < clean_text.length; i++) {
+            const symbol = clean_text[i];
+            sequenceList.push(symbolToId[symbol]);
+        }
+        return sequenceList;
 }
 
     intersperse(sequence, item = 0) {
-    const sequenceList = [item];
-    for (let i = 0; i < sequence.length; i++) {
-    sequenceList.push(sequence[i]);
-    sequenceList.push(item);
-    }
-    return sequenceList;
+        const sequenceList = [item];
+        for (let i = 0; i < sequence.length; i++) {
+            sequenceList.push(sequence[i]);
+            sequenceList.push(item);
+        }
+        return sequenceList;
     }
 
     sequenceToText(sequence) {
     const textList = [];
     for (let i = 0; i < sequence.length; i++) {
-    const symbol = idToSymbol[sequence[i]];
-    textList.push(symbol);
+        const symbol = idToSymbol[sequence[i]];
+        textList.push(symbol);
     }
     return textList.join("");
 }
@@ -171,9 +184,11 @@ if (this.need_spks){
     send_data.spks = tensor_spks
 }
 // Run inference
+this.debug("onnx input-size:"+dic.x_length.toString())
 const output = await this.session.run(send_data);
 //If your onnx not connect hifigun difference output return (not tested)
 const wav_array = output.wav.data;
+this.debug("onnx output-size:"+wav_array.length.toString())
 const x_lengths_array = output.wav_lengths.data;
 
 return wav_array;
@@ -189,4 +204,4 @@ return wav_array;
 
 }
 
-export { MatchaTTSRaw };
+export { MatchaTTSRaw ,env};
