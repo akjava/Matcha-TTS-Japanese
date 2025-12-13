@@ -108,8 +108,6 @@ def english_cleaners2(text):
     text = lowercase(text)
     text = expand_abbreviations(text)
     global global_phonemizer
-    from phonemizer.backend.espeak.wrapper import EspeakWrapper
-    EspeakWrapper.set_library('C:\Program Files\eSpeak NG\libespeak-ng.dll')
     if global_phonemizer == None:
         global_phonemizer = phonemizer.backend.EspeakBackend(
         language="en-us",
