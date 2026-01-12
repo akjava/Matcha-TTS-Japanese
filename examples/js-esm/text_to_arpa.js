@@ -1,5 +1,19 @@
 import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
 
+// Try to suppress ONNX warnings via env
+if (env.backends && env.backends.onnx) {
+    env.backends.onnx.logLevel = 'fatal';
+}
+
+// Hack to suppress specific ONNX Runtime warnings that ignore logLevel
+const originalWarn = console.warn;
+console.warn = function (...args) {
+    if (args.length > 0 && typeof args[0] === 'string' && args[0].includes('CleanUnusedInitializersAndNodeArgs')) {
+        return;
+    }
+    originalWarn.apply(console, args);
+};
+
 
 async function text2text_generation(words,convert_ipa=false) {
   const generator = await pipeline('text2text-generation', 'mini-bart-g2p',{quantized: false});
