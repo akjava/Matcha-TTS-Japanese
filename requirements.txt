@@ -19,7 +19,7 @@ hydra-optuna-sweeper==1.2.0
 # --------- others --------- #
 rootutils       # standardizing the project root setup
 pre-commit      # hooks for applying linters on commit
-rich            # beautiful text formatting in terminal
+rich==14.0.0            # beautiful text formatting in terminal
 pytest          # tests
 # sh            # for running bash commands in some tests (linux/macos only)
 phonemizer      # phonemization of text
@@ -32,7 +32,7 @@ inflect
 Unidecode
 scipy
 torchaudio
-matplotlib
+matplotlib==3.9.2
 pandas
 conformer==0.3.2
 diffusers # developed using version ==0.25.0
