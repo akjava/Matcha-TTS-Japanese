@@ -1,0 +1,19 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=multispeaker
+
+defaults:
+  - override /data: unknown.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["unknown"]
+
+run_name: unknown
+# I'm not sure this is the best base-model
+# https://github.com/akjava/Matcha-TTS-Japanese/issues/8
+# download from below
+# https://huggingface.co/Akjava/matcha-tts_ja_single-speaker_merged_ja004_ja005-retrain-ja004/resolve/main/runs/2024-09-17_04-06-07/checkpoints/checkpoint_epoch%3D3249.ckpt?download=true
+ckpt_path: ja004_checkpoint_epoch=3249.ckpt
