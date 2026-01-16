@@ -1,44 +1,35 @@
-# --------- pytorch --------- #
 torch==2.5.1
 torchvision==0.20.1
 torchaudio==2.5.1
 lightning>=2.0.0,<2.3.0
 torchmetrics>=0.11.4,<1.4.0
-# --------- hydra --------- #
 hydra-core==1.3.2
 hydra-colorlog==1.2.0
 hydra-optuna-sweeper==1.2.0
-
-# --------- loggers --------- #
-# wandb
-# neptune-client
-# mlflow
-# comet-ml
-# aim>=3.16.2  # no lower than 3.16.2, see https://github.com/aimhubio/aim/issues/2550
-
-# --------- others --------- #
-rootutils       # standardizing the project root setup
-pre-commit      # hooks for applying linters on commit
-rich==14.0.0            # beautiful text formatting in terminal
-pytest          # tests
-# sh            # for running bash commands in some tests (linux/macos only)
-phonemizer      # phonemization of text
+rootutils
+pre-commit
+rich==14.0.0
+pytest
+phonemizer
 tensorboard
 librosa
 Cython
-numpy
+numpy>=1.26.0
 einops
 inflect
 Unidecode
 scipy
-torchaudio
 matplotlib==3.9.2
 pandas
 conformer==0.3.2
-diffusers # developed using version ==0.25.0
+diffusers
 notebook
 ipywidgets
 gradio==3.43.2
 gdown
 wget
 seaborn
+pyopenjtalk
+onnx
+onnxruntime
+soundfile
